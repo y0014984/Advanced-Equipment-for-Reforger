@@ -5,6 +5,8 @@ GenericEntity {
   }
   AER_OpenCloseStateComponent "{5E44DDFEE52F1B1B}" {
   }
+  AER_PowerStateComponent "{5E46B78494E24312}" {
+  }
   InventoryItemComponent "{5E467C4958E28453}" {
    Attributes SCR_ItemAttributeCollection "{5E467C4970CD1CF0}" {
     ItemDisplayName UIInfo "{5E467C497E4FB755}" {
@@ -35,6 +37,8 @@ GenericEntity {
   MeshObject "{5E44DDF969AB05FB}" {
    Object "{7EA13CF243D7B131}Assets/Laptop/Laptop.xob"
   }
+  Hierarchy "{5E46C897F796D299}" {
+  }
   RigidBody "{5E44DDF9700CDC87}" {
    ModelGeometry 1
   }
@@ -59,29 +63,41 @@ GenericEntity {
     }
    }
    additionalActions {
-    AER_LaptopUserAction "{5E44DDFECEF6A396}" {
+    AER_LaptopOpenCloseUserAction "{5E46B784ED88DE0A}" {
      ParentContextList {
       "main"
      }
-     UIInfo UIInfo "{5E44DDFEF65ACF94}" {
+     UIInfo UIInfo "{5E46B784E9245C9C}" {
       Name "open/close"
      }
+     "Sort Priority" 1
     }
-    AER_TerminalUserAction "{5E44DDE4F6FC8CCF}" {
+    AER_TerminalUseUserAction "{5E46C896BF595F53}" {
      ParentContextList {
       "main"
      }
-     UIInfo UIInfo "{5E44DDE4F3F72851}" {
-      Name "terminal dialog create/delete"
+     UIInfo UIInfo "{5E46C896B835CAE3}" {
+      Name "Use"
      }
+     "Sort Priority" 3
+     "Inventory action" 0
     }
-    SCR_PickUpItemAction "{5E467C48159CAE0E}" {
+    AER_LaptopPickUpUserAction "{5E46C8966CB4A4BE}" {
      ParentContextList {
       "main"
      }
-     UIInfo UIInfo "{5E467C4824CFADF0}" {
+     UIInfo UIInfo "{5E46C89669EFD5D7}" {
       Name "#AR-Inventory_PickUp"
      }
+    }
+    AER_LaptopTurnOnOffUserAction "{5E46C89EB5891BBF}" {
+     ParentContextList {
+      "main"
+     }
+     UIInfo UIInfo "{5E46C89EB3558A18}" {
+      Name "Turn On/Off"
+     }
+     "Sort Priority" 2
     }
    }
   }

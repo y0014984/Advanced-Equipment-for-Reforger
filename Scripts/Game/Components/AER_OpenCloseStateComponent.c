@@ -10,12 +10,39 @@ class AER_OpenCloseStateComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void ToggleOpenCloseState()
 	{
-		if (m_bIsOpen)
-			m_bIsOpen = false;
-		else
-			m_bIsOpen = true;
+		AER_PowerStateComponent powerState = AER_PowerStateComponent.Cast(GetOwner().FindComponent(AER_PowerStateComponent));
 		
-		PrintFormat("AER - Open/Close-State toggled - %1", m_bIsOpen);
+		if (m_bIsOpen && (powerState.GetPowerState() == EPowerState.ON)) // open && on --> clsed && standby
+		{
+			m_bIsOpen = false;
+			powerState.Standby();
+			return;
+		}
+		
+		if (m_bIsOpen && (powerState.GetPowerState() == EPowerState.STANDBY)) // open && standby --> closed && standby
+		{
+			m_bIsOpen = false;
+			return;
+		}
+		
+		if (m_bIsOpen && (powerState.GetPowerState() == EPowerState.OFF)) // open && off --> closed and off
+		{
+			m_bIsOpen = false;
+			return;
+		}
+
+		if (!m_bIsOpen && (powerState.GetPowerState() == EPowerState.STANDBY)) // closed && standby --> open && on
+		{
+			m_bIsOpen = true;
+			powerState.TurnOn();
+			return;
+		}
+		
+		if (!m_bIsOpen && (powerState.GetPowerState() == EPowerState.OFF)) // closed && off --> open && off
+		{
+			m_bIsOpen = true;
+			return;
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------

@@ -1,14 +1,13 @@
-class AER_TerminalUserActionBase : ScriptedUserAction
+class AER_TerminalUseUserAction : ScriptedUserAction
 {
 	[Attribute(defvalue: "{5E3EDA618BE7FF1D}UI/layouts/AER_TerminalUI.layout")] // setup the created layout here
 	protected ResourceName m_sLayout;
 
 	protected ref Widget m_wDisplay;
-}
-
-class AER_TerminalUserAction : AER_TerminalUserActionBase
-{
+	
 	private AER_OpenCloseStateComponent m_OpenCloseState;
+	
+	private AER_PowerStateComponent m_PowerState;
 	
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
@@ -27,6 +26,9 @@ class AER_TerminalUserAction : AER_TerminalUserActionBase
 		}
 
 		if (!m_OpenCloseState.IsOpen()) // Check if laptop is open
+			return false;
+		
+		if (!(m_PowerState.GetPowerState() == EPowerState.ON)) // Check if laptop is powered on
 			return false;
 		
 		if (GetGame().GetMenuManager().IsAnyDialogOpen()) // Check if Terminal UI is open
@@ -53,19 +55,10 @@ class AER_TerminalUserAction : AER_TerminalUserActionBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	override bool GetActionNameScript(out string outName)
-	{
-		if (m_wDisplay)
-			outName = "Delete Terminal Dialog";
-		else
-			outName = "Create Terminal Dialog";
-
-		return true;
-	}
-	
-	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		m_OpenCloseState = AER_OpenCloseStateComponent.Cast(pOwnerEntity.FindComponent(AER_OpenCloseStateComponent));
+		
+		m_PowerState = AER_PowerStateComponent.Cast(pOwnerEntity.FindComponent(AER_PowerStateComponent));
 	}
 }

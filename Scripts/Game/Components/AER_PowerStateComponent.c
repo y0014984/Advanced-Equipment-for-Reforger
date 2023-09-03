@@ -3,24 +3,38 @@ class AER_PowerStateComponentClass : ScriptComponentClass
 {
 }
 
+enum EPowerState
+{
+	OFF,
+	STANDBY,
+	ON
+}
+
 class AER_PowerStateComponent : ScriptComponent
 {
-	protected bool m_bIsOpen = true;
+	protected EPowerState m_ePowerState = EPowerState.OFF;
 	
 	//------------------------------------------------------------------------------------------------
-	void ToggleOpenCloseState()
+	void TurnOn()
 	{
-		if (m_bIsOpen)
-			m_bIsOpen = false;
-		else
-			m_bIsOpen = true;
-		
-		PrintFormat("AER - Open/Close-State toggled - %1", m_bIsOpen);
+		m_ePowerState = EPowerState.ON;
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	bool IsOpen()
+	void TurnOff()
 	{
-		return m_bIsOpen;
+		m_ePowerState = EPowerState.OFF;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Standby()
+	{
+		m_ePowerState = EPowerState.STANDBY;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	EPowerState GetPowerState()
+	{
+		return m_ePowerState;
 	}
 }
