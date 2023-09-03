@@ -1,0 +1,93 @@
+GenericEntity {
+ ID "5E44DDFFDD11AED4"
+ components {
+  SignalsManagerComponent "{5E44DDFEB7045248}" {
+  }
+  AER_OpenCloseStateComponent "{5E44DDFEE52F1B1B}" {
+  }
+  InventoryItemComponent "{5E467C4958E28453}" {
+   Attributes SCR_ItemAttributeCollection "{5E467C4970CD1CF0}" {
+    ItemDisplayName UIInfo "{5E467C497E4FB755}" {
+     Name "Laptop"
+     Description "Hack your way through the enemies."
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{5E467C488201F673}" {
+     Weight 2.5
+     SizeSetupStrategy Manual
+     ItemDimensions 20 3 15
+     ItemVolume 900
+    }
+    CustomAttributes {
+     PreviewRenderAttributes "{5E468A9B31B18112}" {
+      CameraPreset Front
+      CameraOrbitAngles 30 27 0
+      CameraDistanceToItem 0.6
+      CameraOffset 0 0 0
+      ItemRenderRotation 0 180 0
+      FOV 40
+     }
+    }
+    CommonItemType "NONE"
+    m_Size SLOT_2x2
+    m_SlotType SLOT_LOOT_STORAGE
+   }
+  }
+  MeshObject "{5E44DDF969AB05FB}" {
+   Object "{7EA13CF243D7B131}Assets/Laptop/Laptop.xob"
+  }
+  RigidBody "{5E44DDF9700CDC87}" {
+   ModelGeometry 1
+  }
+  ProcAnimComponent "{5E44DDFE021EDA26}" {
+   Parameters {
+    ProcAnimParams "{5E44DDFE0C27CFFF}" {
+     ResourceName "{B15B8EA50EB8948B}Assets/Laptop/Anims/Laptop.pap"
+     BoneNames {
+      "Laptop_Top"
+     }
+     SimulateOnDedicatedServer 0
+    }
+   }
+  }
+  ActionsManagerComponent "{5E44DDFEB272EBAB}" {
+   ActionContexts {
+    UserActionContext "{5E44DDFEBC85AA05}" {
+     ContextName "main"
+     Position PointInfo "{5E44DDFEBA78CC3E}" {
+      PivotID "Laptop_Top"
+     }
+    }
+   }
+   additionalActions {
+    AER_LaptopUserAction "{5E44DDFECEF6A396}" {
+     ParentContextList {
+      "main"
+     }
+     UIInfo UIInfo "{5E44DDFEF65ACF94}" {
+      Name "open/close"
+     }
+    }
+    AER_TerminalUserAction "{5E44DDE4F6FC8CCF}" {
+     ParentContextList {
+      "main"
+     }
+     UIInfo UIInfo "{5E44DDE4F3F72851}" {
+      Name "terminal dialog create/delete"
+     }
+    }
+    SCR_PickUpItemAction "{5E467C48159CAE0E}" {
+     ParentContextList {
+      "main"
+     }
+     UIInfo UIInfo "{5E467C4824CFADF0}" {
+      Name "#AR-Inventory_PickUp"
+     }
+    }
+   }
+  }
+  RplComponent "{5E44DDFEDCCA989D}" {
+   "Rpl State Override" Runtime
+  }
+ }
+ coords 1268.337 37.474 2936.234
+}

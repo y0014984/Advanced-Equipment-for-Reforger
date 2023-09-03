@@ -1,0 +1,122 @@
+ProcAnimProjectClass {
+ signals {
+  SignalClass {
+   id 1028
+   name "Laptop"
+   tl -448 -306
+   res "{C8CAF7896F2CD6C4}Assets/Laptop/Anims/Laptop.siga"
+   inputsport {
+    7
+   }
+   outputsport {
+    4
+   }
+   inputvalues {
+    17.39
+   }
+   inputvaluesmin {
+    0
+   }
+   inputvaluesmax {
+    90
+   }
+  }
+ }
+ funcs {
+  BoneClass {
+   id 2054
+   name "Top"
+   version 0
+   tl -114 -537
+   outs {
+    4102
+   }
+   bone "Laptop_Top"
+  }
+  RotationMakeClass {
+   id 3078
+   name "RotationMake 3078"
+   tl -154 -274
+   iops {
+    IOPConnectionClass iopConnection {
+     port 0
+     conn {
+      ConnectionsClass connections {
+       id 0
+       links {
+        ConnectionClass connection {
+         id 1028
+         port 4
+        }
+       }
+      }
+     }
+    }
+   }
+   outs {
+    4102
+   }
+  }
+  RotationSetClass {
+   id 4102
+   name "RotationSet 4102"
+   tl 158 -365
+   funcs {
+    IOPConnectionClass iopConnection {
+     port 0
+     conn {
+      ConnectionsClass connections {
+       id 2
+       links {
+        ConnectionClass connection {
+         id 2054
+         port 0
+        }
+       }
+      }
+     }
+    }
+    IOPConnectionClass iopConnection {
+     port 1
+     conn {
+      ConnectionsClass connections {
+       id 2
+       links {
+        ConnectionClass connection {
+         id 3078
+         port 0
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+ model "{7EA13CF243D7B131}Assets/Laptop/Laptop.xob"
+ version 1
+ compiled ProcAnimCompiledClass {
+  visited {
+   129 1 257
+  }
+  ops {
+   ProcAnimCompiledOp {
+    data {
+     1 131072 0
+    }
+   }
+   ProcAnimCompiledOp {
+    data {
+     1 131072 0
+    }
+   }
+   ProcAnimCompiledOp {
+    data {
+     0 4 0 0 65536 0
+    }
+   }
+  }
+  version 2
+  argsize 5
+ }
+}
