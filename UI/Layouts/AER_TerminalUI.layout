@@ -1,32 +1,17 @@
 FrameWidgetClass {
  Name "rootFrame"
  {
-  ImageWidgetClass "{5E4512AF9D32A392}" {
-   Name "BackgroundHeadline"
-   Slot FrameWidgetSlot "{5E4512AF9D32A3EF}" {
-    PositionX 336
-    OffsetLeft 336
-    PositionY 96
-    OffsetTop 96
-    SizeX 960
-    OffsetRight -1296
-    SizeY 40
-    OffsetBottom -136
-   }
-   "Z Order" -1
-   Color 0.013 0.013 0.013 1
-  }
   TextWidgetClass "{5E44DDE2CB1C0040}" {
    Name "Headline"
    Slot FrameWidgetSlot "{5E44DDE2CB1C01A4}" {
-    PositionX 336
-    OffsetLeft 336
-    PositionY 96
-    OffsetTop 96
-    SizeX 958.5
-    OffsetRight -1294.5
+    PositionX 320
+    OffsetLeft 320
+    PositionY 184
+    OffsetTop 184
+    SizeX 1280
+    OffsetRight -1600
     SizeY 40.5
-    OffsetBottom -136.5
+    OffsetBottom -224.5
    }
    Text "armaOS Terminal for Reforger v0.1"
    "Font Size" 36
@@ -35,17 +20,32 @@ FrameWidgetClass {
     Bold 1
    }
   }
+  ImageWidgetClass "{5E4512AF9D32A392}" {
+   Name "BackgroundHeadline"
+   Slot FrameWidgetSlot "{5E4512AF9D32A3EF}" {
+    PositionX 320
+    OffsetLeft 320
+    PositionY 184
+    OffsetTop 184
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 40
+    OffsetBottom -224
+   }
+   "Z Order" -1
+   Color 0.013 0.013 0.013 1
+  }
   MultilineEditBoxWidgetClass "{5E44DDE2C605A8AE}" {
    Name "Terminal"
    Slot FrameWidgetSlot "{5E44DDE2C605A88B}" {
-    PositionX 336
-    OffsetLeft 336
-    PositionY 144
-    OffsetTop 144
-    SizeX 960
-    OffsetRight -1296
-    SizeY 736
-    OffsetBottom -880
+    PositionX 320
+    OffsetLeft 320
+    PositionY 232
+    OffsetTop 232
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 632
+    OffsetBottom -864
    }
    Text "Get a list of available commands by typing 'help'"
    FontProperties FontProperties "{5E44DDE047C5A886}" {
@@ -55,14 +55,14 @@ FrameWidgetClass {
   ImageWidgetClass "{5E450E90E98EB8EB}" {
    Name "BackgroundTerminal"
    Slot FrameWidgetSlot "{5E450E90E98EB8C9}" {
-    PositionX 336
-    OffsetLeft 336
-    PositionY 144
-    OffsetTop 144
-    SizeX 960
-    OffsetRight -1296
-    SizeY 736
-    OffsetBottom -880
+    PositionX 320
+    OffsetLeft 320
+    PositionY 232
+    OffsetTop 232
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 632
+    OffsetBottom -864
    }
    "Z Order" -1
    Color 0.038 0.038 0.038 1
@@ -70,14 +70,14 @@ FrameWidgetClass {
   ButtonWidgetClass "{5E44DDE2B92EA506}" {
    Name "ButtonClose"
    Slot FrameWidgetSlot "{5E44DDE2B92EA56C}" {
-    PositionX 1192
-    OffsetLeft 1192
-    PositionY 888
-    OffsetTop 888
+    PositionX 1496
+    OffsetLeft 1496
+    PositionY 872
+    OffsetTop 872
     SizeX 104
-    OffsetRight -1296
+    OffsetRight -1600
     SizeY 32
-    OffsetBottom -920
+    OffsetBottom -904
    }
    Color 0 0 0 1
    components {
@@ -99,14 +99,14 @@ FrameWidgetClass {
   ButtonWidgetClass "{5E46691D96EF1037}" {
    Name "ButtonAction"
    Slot FrameWidgetSlot "{5E44DDE2B92EA56C}" {
-    PositionX 336
-    OffsetLeft 336
-    PositionY 888
-    OffsetTop 888
+    PositionX 320
+    OffsetLeft 320
+    PositionY 872
+    OffsetTop 872
     SizeX 104
-    OffsetRight -440
+    OffsetRight -424
     SizeY 32
-    OffsetBottom -920
+    OffsetBottom -904
    }
    Color 0 0 0 1
    components {

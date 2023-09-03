@@ -5,22 +5,20 @@ class AER_FilesystemComponentClass : ScriptComponentClass
 
 class AER_FilesystemComponent : ScriptComponent
 {
-	protected bool m_bIsOpen = true;
+	protected ref map<string, ref AER_FilesystemObject> m_mFilesystem = new map<string, ref AER_FilesystemObject>();
 	
 	//------------------------------------------------------------------------------------------------
-	void ToggleOpenCloseState()
+	void SetFilesystemObject(string path, AER_FilesystemObject fsObj)
 	{
-		if (m_bIsOpen)
-			m_bIsOpen = false;
-		else
-			m_bIsOpen = true;
+		m_mFilesystem.Set(path, fsObj);
 		
-		PrintFormat("AER - Open/Close-State toggled - %1", m_bIsOpen);
+		PrintFormat("New Filesystem Obj Count: %1", m_mFilesystem.Count());
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	bool IsOpen()
+	AER_FilesystemObject GetFilesystemObject(string path)
 	{
-		return m_bIsOpen;
+		// returns NULL if not found
+		return m_mFilesystem.Get(path);
 	}
 }

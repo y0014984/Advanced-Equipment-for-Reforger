@@ -50,8 +50,8 @@ class AER_TerminalUseUserAction : ScriptedUserAction
 		
 		AER_TerminalUI terminal = AER_TerminalUI.Cast(menu);
 		
-		AER_OpenCloseStateComponent openCloseStateComponent = AER_OpenCloseStateComponent.Cast(pOwnerEntity.FindComponent(AER_OpenCloseStateComponent));
-		terminal.SetOpenCloseStateComponent(openCloseStateComponent);
+		terminal.SetOpenCloseStateComponent(m_OpenCloseState);
+		terminal.SetPowerStateComponent(m_PowerState);
 	}
 
 	//------------------------------------------------------------------------------------------------

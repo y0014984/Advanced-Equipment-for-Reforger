@@ -11,5 +11,9 @@ GenericEntity : "{C98FCC6CA6C56069}Prefabs/Items/Medicine/AspirinBottle.et" {
  coords 1267.304 37.469 2936.946
 }
 GenericEntity MyLaptop : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
+ components {
+  AER_FilesystemComponent "{5E46C889563CBAAC}" {
+  }
+ }
  coords 1268.176 37.472 2936.755
 }

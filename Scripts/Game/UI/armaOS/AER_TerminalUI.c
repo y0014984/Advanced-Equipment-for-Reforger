@@ -5,6 +5,7 @@ class AER_TerminalUI : MenuBase
 	protected static const string BUTTON_ACTION = "ButtonAction";
 	
 	protected AER_OpenCloseStateComponent m_OpenCloseStateComponent;
+	protected AER_PowerStateComponent m_PowerStateComponent;
 
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
@@ -93,15 +94,34 @@ class AER_TerminalUI : MenuBase
 			return;
 		}
 		
+		string terminalOutput = "Begin output\n---\n";
+		
 		if (m_OpenCloseStateComponent.IsOpen())
-			terminal.SetText("Laptop is open");
+			terminalOutput += "Laptop is open" + "\n";
 		else
-			terminal.SetText("Laptop is closed");
+			terminalOutput += "Laptop is closed" + "\n";
+		
+		if (m_PowerStateComponent.GetPowerState() == EPowerState.ON)
+			terminalOutput += "Laptop is on" + "\n";
+		else if (m_PowerStateComponent.GetPowerState() == EPowerState.STANDBY)
+			terminalOutput += "Laptop is standby" + "\n";
+		else
+			terminalOutput += "Laptop is off" + "\n";
+		
+		terminalOutput += "---\nEnd output";
+		
+		terminal.SetText(terminalOutput);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	void SetOpenCloseStateComponent(AER_OpenCloseStateComponent component)
 	{
 		m_OpenCloseStateComponent = component;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void SetPowerStateComponent(AER_PowerStateComponent component)
+	{
+		m_PowerStateComponent = component;
 	}
 }
