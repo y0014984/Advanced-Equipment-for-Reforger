@@ -1,11 +1,17 @@
 class AER_TerminalUI : MenuBase
 {
-	protected static const string TERMINAL = "Terminal";
+	protected static const string TERMINAL_OUTPUT = "TerminalOutput";
+	protected static const string TERMINAL_INPUT = "TerminalInput";
 	protected static const string BUTTON_CLOSE = "ButtonClose";
 	protected static const string BUTTON_ACTION = "ButtonAction";
 	
 	protected AER_OpenCloseStateComponent m_OpenCloseStateComponent;
 	protected AER_PowerStateComponent m_PowerStateComponent;
+	protected AER_FilesystemComponent m_FilesystemComponent;
+	protected AER_TerminalComponent m_TerminalComponent;
+	
+	protected TextWidget m_TerminalOutputWidget;
+	protected EditBoxWidget m_TerminalInputWidget;
 
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
@@ -35,14 +41,36 @@ class AER_TerminalUI : MenuBase
 
 		SCR_ButtonTextComponent buttonAction = SCR_ButtonTextComponent.GetButtonText(BUTTON_ACTION, rootWidget);
 		if (buttonAction)
-			buttonAction.m_OnClicked.Insert(ChangeText);
+			buttonAction.m_OnClicked.Insert(ProcessCommand);
 		else
 			Print("Button Action not found - won't be able to interact by button", LogLevel.WARNING);
 		
 		/*
+			Terminal Output
+		*/
+		
+		m_TerminalOutputWidget = TextWidget.Cast(rootWidget.FindWidget(TERMINAL_OUTPUT));
+		if (!m_TerminalOutputWidget)
+		{
+			Print("Terminal Output could not be found", LogLevel.WARNING);
+			return;
+		}
+		
+		/*
+			Terminal Input
+		*/
+		
+		m_TerminalInputWidget = EditBoxWidget.Cast(rootWidget.FindWidget(TERMINAL_INPUT));
+		if (!m_TerminalInputWidget)
+		{
+			Print("Terminal Input could not be found", LogLevel.WARNING);
+			return;
+		}
+		
+		/*
 			ESC/Start listener
 		*/
-
+		
 		InputManager inputManager = GetGame().GetInputManager();
 		if (inputManager)
 		{
@@ -80,37 +108,51 @@ class AER_TerminalUI : MenuBase
 		}
 	}
 
-	//------------------------------------------------------------------------------------------------
-	protected void ChangeText()
-	{
-		Widget rootWidget = GetRootWidget();
-		if (!rootWidget)
-			return;
-
-		TextWidget terminal = TextWidget.Cast(rootWidget.FindWidget(TERMINAL));
-		if (!terminal)
+	//------------------------------------------------------------------------------------------------	
+	protected void UpdateTerminalOutput()
+	{	
+		if(m_TerminalComponent)
 		{
-			Print("Terminal could not be found", LogLevel.WARNING);
-			return;
+			string output = m_TerminalComponent.GetTerminalOutputBuffer();
+			
+			output += m_TerminalComponent.GetPrompt();
+			
+			m_TerminalOutputWidget.SetText(output);
 		}
-		
-		string terminalOutput = "Begin output\n---\n";
+		else
+		{
+			m_TerminalOutputWidget.SetText("Components not initialized yet");
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void ProcessCommand()
+	{
+		/*
+		string terminalOutputBuffer = "Begin output\n---\n";
 		
 		if (m_OpenCloseStateComponent.IsOpen())
-			terminalOutput += "Laptop is open" + "\n";
+			terminalOutputBuffer += "Laptop is open" + "\n";
 		else
-			terminalOutput += "Laptop is closed" + "\n";
+			terminalOutputBuffer += "Laptop is closed" + "\n";
 		
 		if (m_PowerStateComponent.GetPowerState() == EPowerState.ON)
-			terminalOutput += "Laptop is on" + "\n";
+			terminalOutputBuffer += "Laptop is on" + "\n";
 		else if (m_PowerStateComponent.GetPowerState() == EPowerState.STANDBY)
-			terminalOutput += "Laptop is standby" + "\n";
+			terminalOutputBuffer += "Laptop is standby" + "\n";
 		else
-			terminalOutput += "Laptop is off" + "\n";
+			terminalOutputBuffer += "Laptop is off" + "\n";
 		
-		terminalOutput += "---\nEnd output";
+		terminalOutputBuffer += "---\nEnd output";
+		*/
 		
-		terminal.SetText(terminalOutput);
+		string command = m_TerminalInputWidget.GetText();
+		
+		m_TerminalComponent.AddCommandLine(command);
+		
+		m_TerminalInputWidget.SetText("");
+		
+		UpdateTerminalOutput();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -123,5 +165,19 @@ class AER_TerminalUI : MenuBase
 	void SetPowerStateComponent(AER_PowerStateComponent component)
 	{
 		m_PowerStateComponent = component;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void SetFilesystemComponent(AER_FilesystemComponent component)
+	{
+		m_FilesystemComponent = component;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void SetTerminalComponent(AER_TerminalComponent component)
+	{
+		m_TerminalComponent = component;
+		
+		UpdateTerminalOutput();
 	}
 }

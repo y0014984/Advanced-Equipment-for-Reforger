@@ -104,6 +104,12 @@ GenericEntity {
   RplComponent "{5E44DDFEDCCA989D}" {
    "Rpl State Override" Runtime
   }
+  AER_FilesystemComponent "{5E46C889563CBAAC}" {
+  }
+  AER_UsersComponent "{5E48703D632A00B3}" {
+  }
+  AER_TerminalComponent "{5E48703558FC6C8C}" {
+  }
  }
  coords 1268.337 37.474 2936.234
 }

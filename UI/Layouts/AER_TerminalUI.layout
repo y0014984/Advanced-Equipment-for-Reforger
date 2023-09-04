@@ -36,7 +36,7 @@ FrameWidgetClass {
    Color 0.013 0.013 0.013 1
   }
   MultilineEditBoxWidgetClass "{5E44DDE2C605A8AE}" {
-   Name "Terminal"
+   Name "TerminalOutput"
    Slot FrameWidgetSlot "{5E44DDE2C605A88B}" {
     PositionX 320
     OffsetLeft 320
@@ -44,16 +44,16 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 632
-    OffsetBottom -864
+    SizeY 592
+    OffsetBottom -824
    }
-   Text "Get a list of available commands by typing 'help'"
+   Text ""
    FontProperties FontProperties "{5E44DDE047C5A886}" {
     Font "{0E041C5B1F27DCEA}ui/fonts/robotomono_msdf_28.fnt"
    }
   }
   ImageWidgetClass "{5E450E90E98EB8EB}" {
-   Name "BackgroundTerminal"
+   Name "BackgroundTerminalOutput"
    Slot FrameWidgetSlot "{5E450E90E98EB8C9}" {
     PositionX 320
     OffsetLeft 320
@@ -61,7 +61,40 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 632
+    SizeY 592
+    OffsetBottom -824
+   }
+   "Z Order" -1
+   Color 0.038 0.038 0.038 1
+  }
+  EditBoxWidgetClass "{5E4870007A015174}" {
+   Name "TerminalInput"
+   Slot FrameWidgetSlot "{5E4870007A01515C}" {
+    PositionX 320
+    OffsetLeft 320
+    PositionY 832
+    OffsetTop 832
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 32
+    OffsetBottom -864
+   }
+   components {
+    AER_TerminalCommandComponent "{5E48701BCBF4D6E9}" {
+    }
+   }
+   "Placeholder text" "Enter your command here ..."
+  }
+  ImageWidgetClass "{5E487001A04141D7}" {
+   Name "BackgroundTerminalInput"
+   Slot FrameWidgetSlot "{5E450E90E98EB8C9}" {
+    PositionX 320
+    OffsetLeft 320
+    PositionY 832
+    OffsetTop 832
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 32
     OffsetBottom -864
    }
    "Z Order" -1
