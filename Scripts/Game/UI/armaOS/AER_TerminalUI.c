@@ -41,7 +41,7 @@ class AER_TerminalUI : MenuBase
 
 		SCR_ButtonTextComponent buttonAction = SCR_ButtonTextComponent.GetButtonText(BUTTON_ACTION, rootWidget);
 		if (buttonAction)
-			buttonAction.m_OnClicked.Insert(ProcessCommand);
+			buttonAction.m_OnClicked.Insert(UpdateTerminal);
 		else
 			Print("Button Action not found - won't be able to interact by button", LogLevel.WARNING);
 		
@@ -126,29 +126,13 @@ class AER_TerminalUI : MenuBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void ProcessCommand()
+	protected void UpdateTerminal()
 	{
-		/*
-		string terminalOutputBuffer = "Begin output\n---\n";
+		string commandLine = m_TerminalInputWidget.GetText();
 		
-		if (m_OpenCloseStateComponent.IsOpen())
-			terminalOutputBuffer += "Laptop is open" + "\n";
-		else
-			terminalOutputBuffer += "Laptop is closed" + "\n";
+		m_TerminalComponent.AddCommandLine(commandLine);
 		
-		if (m_PowerStateComponent.GetPowerState() == EPowerState.ON)
-			terminalOutputBuffer += "Laptop is on" + "\n";
-		else if (m_PowerStateComponent.GetPowerState() == EPowerState.STANDBY)
-			terminalOutputBuffer += "Laptop is standby" + "\n";
-		else
-			terminalOutputBuffer += "Laptop is off" + "\n";
-		
-		terminalOutputBuffer += "---\nEnd output";
-		*/
-		
-		string command = m_TerminalInputWidget.GetText();
-		
-		m_TerminalComponent.AddCommandLine(command);
+		m_TerminalComponent.ProcessCommandLine(commandLine);
 		
 		m_TerminalInputWidget.SetText("");
 		

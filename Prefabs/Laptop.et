@@ -10,18 +10,16 @@ GenericEntity {
   AER_PowerStateComponent "{5E46B78494E24312}" {
   }
   AER_TerminalComponent "{5E48703558FC6C8C}" {
-   components {
-    AER_UsersComponent "{5E4A6A150A9D65BF}" {
-     m_aUsers {
-      AER_UserObject "{5E4A6A1543A369D7}" {
-       m_sUsername "admin"
-       m_sPassword "admin123"
-       m_bLoginAllowed 1
-      }
-     }
-     m_sUserLoggedIn "admin"
+  }
+  AER_UsersComponent "{5E4A9DB051632345}" {
+   m_aUsers {
+    AER_UserObject "{5E4A9DB05357A8A3}" {
+     m_sUsername "admin"
+     m_sPassword "admin123"
+     m_bLoginAllowed 1
     }
    }
+   m_sUserLoggedIn "admin"
   }
   InventoryItemComponent "{5E467C4958E28453}" {
    Attributes SCR_ItemAttributeCollection "{5E467C4970CD1CF0}" {

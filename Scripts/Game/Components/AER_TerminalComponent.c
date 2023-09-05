@@ -42,8 +42,94 @@ class AER_TerminalComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void AddCommandLine(string command)
+	void AddCommandLine(string commandLine)
 	{
-		m_sTerminalOutputBuffer += GetPrompt() + command + "\n";
+		m_sTerminalOutputBuffer += GetPrompt() + commandLine + "\n";
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void AddOutputLine(string outputLine)
+	{
+		m_sTerminalOutputBuffer += outputLine + "\n";
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void ProcessCommandLine(string commandLine)
+	{
+		array<string> commandLineTokens = {};
+		commandLine.Split(" ", commandLineTokens, true);
+		
+		string command = commandLineTokens[0];
+		
+		// remove item[0] which is command itself
+		commandLineTokens.RemoveOrdered(0);
+		
+		switch (command)
+		{
+			case "cd":
+				Print("cd");
+				break;
+	
+			case "ls":
+				Print("ls");
+				break;
+
+			case "echo":
+				Echo(commandLineTokens);
+				break;
+
+			case "pwd":
+				Pwd();
+				break;
+			
+			case "cat":
+				Cat(commandLineTokens);
+				break;
+				
+			default:
+				AddOutputLine(string.Format("sh: %1: not found", command));
+				break;
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Echo(array<string> commandLineTokens)
+	{
+		string outputLine = Join(" ", commandLineTokens);
+		AddOutputLine(outputLine);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Pwd()
+	{
+		AddOutputLine(m_FilesystemComponent.GetWorkingDirectory());
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Cat(array<string> commandLineTokens)
+	{
+		string path = Join(" ", commandLineTokens);
+		
+		AER_FilesystemObject file = m_FilesystemComponent.GetFilesystemObject(path);
+		if(!file)
+		{
+			AddOutputLine(string.Format("cat: can't open '%1': No such file or directory", path));
+			return;
+		}
+		
+		AddOutputLine(file.GetContent());
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	string Join(string delimiter, array<string> stringTokens)
+	{
+		string joinedStr = "";
+		
+		foreach (string str : stringTokens)
+		{
+			joinedStr += str + delimiter;
+		}
+		
+		return joinedStr.Trim();
 	}
 }
