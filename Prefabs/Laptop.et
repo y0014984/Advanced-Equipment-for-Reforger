@@ -3,9 +3,25 @@ GenericEntity {
  components {
   SignalsManagerComponent "{5E44DDFEB7045248}" {
   }
+  AER_FilesystemComponent "{5E46C889563CBAAC}" {
+  }
   AER_OpenCloseStateComponent "{5E44DDFEE52F1B1B}" {
   }
   AER_PowerStateComponent "{5E46B78494E24312}" {
+  }
+  AER_TerminalComponent "{5E48703558FC6C8C}" {
+   components {
+    AER_UsersComponent "{5E4A6A150A9D65BF}" {
+     m_aUsers {
+      AER_UserObject "{5E4A6A1543A369D7}" {
+       m_sUsername "admin"
+       m_sPassword "admin123"
+       m_bLoginAllowed 1
+      }
+     }
+     m_sUserLoggedIn "admin"
+    }
+   }
   }
   InventoryItemComponent "{5E467C4958E28453}" {
    Attributes SCR_ItemAttributeCollection "{5E467C4970CD1CF0}" {
@@ -103,12 +119,6 @@ GenericEntity {
   }
   RplComponent "{5E44DDFEDCCA989D}" {
    "Rpl State Override" Runtime
-  }
-  AER_FilesystemComponent "{5E46C889563CBAAC}" {
-  }
-  AER_UsersComponent "{5E48703D632A00B3}" {
-  }
-  AER_TerminalComponent "{5E48703558FC6C8C}" {
   }
  }
  coords 1268.337 37.474 2936.234

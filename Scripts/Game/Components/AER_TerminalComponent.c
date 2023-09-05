@@ -5,9 +5,6 @@ class AER_TerminalComponentClass : ScriptComponentClass
 
 class AER_TerminalComponent : ScriptComponent
 {
-	[Attribute("0.5", UIWidgets.EditBox, desc: "BlaBla", params: "0.1 5", category: "my Category")]
-	protected float m_fTest;
-	
 	protected AER_UsersComponent m_UsersComponent;
 	protected AER_FilesystemComponent m_FilesystemComponent;
 	
@@ -23,6 +20,11 @@ class AER_TerminalComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	string GetPrompt()
 	{
+		if(!m_UsersComponent)
+			m_UsersComponent = AER_UsersComponent.Cast(GetOwner().FindComponent(AER_UsersComponent));
+		if(!m_FilesystemComponent)
+			m_FilesystemComponent = AER_FilesystemComponent.Cast(GetOwner().FindComponent(AER_FilesystemComponent));
+		
 		string prompt = m_UsersComponent.GetUserLoggedIn() + "@armaOS:" + m_FilesystemComponent.GetWorkingDirectory() + ">";
 		return prompt;
 	}

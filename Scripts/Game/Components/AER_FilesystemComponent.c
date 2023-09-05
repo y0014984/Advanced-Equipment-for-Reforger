@@ -24,8 +24,6 @@ class AER_FilesystemComponent : ScriptComponent
 	void SetFilesystemObject(string path, AER_FilesystemObject fsObj)
 	{
 		m_mFilesystem.Set(path, fsObj);
-		
-		PrintFormat("New Filesystem Obj Count: %1", m_mFilesystem.Count());
 	}
 	
 	//------------------------------------------------------------------------------------------------

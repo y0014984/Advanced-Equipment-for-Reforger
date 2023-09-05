@@ -5,36 +5,37 @@ class AER_UsersComponentClass : ScriptComponentClass
 
 class AER_UsersComponent : ScriptComponent
 {
-	protected ref map<string, ref AER_UserObject> m_mUsers;
+	[Attribute(defvalue: "", uiwidget: UIWidgets.Object, desc: "Users - Class AER_UserObject", params: "", category: "Advanced Equipment")];
+	protected ref array<ref AER_UserObject> m_aUsers;
 	
+	[Attribute(defvalue: "", uiwidget: UIWidgets.EditBox, desc: "User Logged In - Name of the user", params: "", category: "Advanced Equipment")];
 	protected string m_sUserLoggedIn;
-	
-	//------------------------------------------------------------------------------------------------
-	void AER_UsersComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
-	{
-		m_mUsers = new map<string, ref AER_UserObject>();
-		
-		AER_UserObject root = new AER_UserObject("root", "", false);
-		
-		SetUser("root", root);
-		SetUserLoggedIn("");
-	}
 
 	//------------------------------------------------------------------------------------------------
-	void SetUser(string username, AER_UserObject user)
+	void AddUser(AER_UserObject user)
 	{
-		m_mUsers.Set(username, user);
-		
-		PrintFormat("New User Obj Count: %1", m_mUsers.Count());
+		m_aUsers.Insert(user);
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	AER_UserObject GetUser(string username)
+	AER_UserObject GetUserByUsername(string username)
 	{
+		foreach (ref AER_UserObject user : m_aUsers)
+		{
+			if (user.GetUsername() == username)
+				return user;
+		}
+		
 		// returns NULL if not found
-		return m_mUsers.Get(username);
+		return null;
 	}
 
+	//------------------------------------------------------------------------------------------------
+	ref array<ref AER_UserObject> GetUsers()
+	{
+		return m_aUsers;
+	}
+	
 	//------------------------------------------------------------------------------------------------
 	void SetUserLoggedIn(string username)
 	{
