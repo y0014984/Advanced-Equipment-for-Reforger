@@ -15,22 +15,6 @@ GenericEntity : "{C98FCC6CA6C56069}Prefabs/Items/Medicine/AspirinBottle.et" {
  coords 1267.304 37.469 2936.946
 }
 GenericEntity MyLaptop : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
- components {
-  AER_FilesystemComponent "{5E46C889563CBAAC}" {
-   m_mFilesystem {
-    AER_FilesystemObject "{5E4A9DBCF9778252}" {
-     m_sName "tmp"
-    }
-    AER_FilesystemObject "{5E4A9DBC03DE2265}" {
-     m_sName "lala"
-    }
-    AER_FileObject "{5E4A9DBF47C7286A}" {
-    }
-    AER_DirectoryObject "{5E4A9DBF402778B9}" {
-    }
-   }
-  }
- }
  coords 1269.425 38.39 2936.624
  angleY 23.444
 }

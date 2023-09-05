@@ -4,6 +4,30 @@ GenericEntity {
   SignalsManagerComponent "{5E44DDFEB7045248}" {
   }
   AER_FilesystemComponent "{5E46C889563CBAAC}" {
+   m_mFilesystem {
+    AER_DirectoryObject "{5E4A9D8083DAD05D}" {
+     m_sName "tmp"
+     m_mChildren {
+      AER_FileObject "{5E4A9D808F3733DC}" {
+       m_sName "lala"
+       m_sContent "lala content"
+      }
+      AER_DirectoryObject "{5E4A9D80E078FFDE}" {
+       m_sName "test"
+       m_mChildren {
+        AER_FileObject "{5E4A9D80EF0D206C}" {
+         m_sName "lulu"
+         m_sContent "lulu content"\
+         "Zeile 2"\
+         "Zeile 3"
+        }
+        AER_FileObject "{5E4A9D8D11AA8034}" {
+        }
+       }
+      }
+     }
+    }
+   }
   }
   AER_OpenCloseStateComponent "{5E44DDFEE52F1B1B}" {
   }
@@ -74,6 +98,8 @@ GenericEntity {
      Position PointInfo "{5E44DDFEBA78CC3E}" {
       PivotID "Laptop_Top"
      }
+    }
+    UserActionContext "{5E4A9D8D5236D334}" {
     }
    }
    additionalActions {

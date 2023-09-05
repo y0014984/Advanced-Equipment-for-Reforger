@@ -5,7 +5,7 @@ class AER_FilesystemComponentClass : ScriptComponentClass
 
 class AER_FilesystemComponent : ScriptComponent
 {
-	[Attribute(defvalue: "", uiwidget: UIWidgets.Object, desc: "Filesystem Objects - File or Directory", params: "conf class=AER_FileObject", category: "Advanced Equipment")];
+	[Attribute(defvalue: "", uiwidget: UIWidgets.Object, desc: "Filesystem Objects - File or Directory", params: "", category: "Advanced Equipment")];
 	protected ref array<ref AER_FilesystemObject> m_mFilesystem;
 	
 	protected string m_sWorkingDirectory;
