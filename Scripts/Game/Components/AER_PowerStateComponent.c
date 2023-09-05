@@ -12,7 +12,8 @@ enum EPowerState
 
 class AER_PowerStateComponent : ScriptComponent
 {
-	protected EPowerState m_ePowerState = EPowerState.OFF;
+	[Attribute(defvalue: "0", uiwidget: UIWidgets.ComboBox, desc: "Power state of entity (on, off, standby)", params: "", enums: ParamEnumArray.FromEnum(EPowerState), category: "Advanced Equipment" )]
+	protected EPowerState m_ePowerState;
 	
 	//------------------------------------------------------------------------------------------------
 	void TurnOn()
