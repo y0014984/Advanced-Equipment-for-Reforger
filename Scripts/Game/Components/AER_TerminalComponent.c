@@ -110,7 +110,7 @@ class AER_TerminalComponent : ScriptComponent
 	{
 		string path = Join(" ", commandLineTokens);
 		
-		AER_FilesystemObject file = m_FilesystemComponent.GetFilesystemObject(path);
+		AER_FileObject file = AER_FileObject.Cast(m_FilesystemComponent.GetFilesystemObjectByPath(path));
 		if(!file)
 		{
 			AddOutputLine(string.Format("cat: can't open '%1': No such file or directory", path));

@@ -5,32 +5,53 @@ class AER_FilesystemComponentClass : ScriptComponentClass
 
 class AER_FilesystemComponent : ScriptComponent
 {
-	protected ref map<string, ref AER_FilesystemObject> m_mFilesystem;
+	[Attribute(defvalue: "", uiwidget: UIWidgets.Object, desc: "Filesystem Objects - File or Directory", params: "conf class=AER_FileObject", category: "Advanced Equipment")];
+	protected ref array<ref AER_FilesystemObject> m_mFilesystem;
 	
 	protected string m_sWorkingDirectory;
 	
 	//------------------------------------------------------------------------------------------------
-	void AER_FilesystemComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
+	void AddFilesystemObject(string path, AER_FilesystemObject fsObj)
 	{
-		m_mFilesystem = new map<string, ref AER_FilesystemObject>();
-		
-		AER_FilesystemObject root = new AER_FilesystemObject(EFilesystemObjectType.DIRECTORY, EFileContentType.TEXT, "");
-		
-		SetFilesystemObject("/", root);
-		SetWorkingDirectory("/");
+		m_mFilesystem.Insert(fsObj);
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void SetFilesystemObject(string path, AER_FilesystemObject fsObj)
+	AER_FilesystemObject GetFilesystemObjectByPath(string path)
 	{
-		m_mFilesystem.Set(path, fsObj);
+		array<string> pathTokens = {};
+		path.Split("/", pathTokens, true);
+		
+		return GetFilesystemObjectByPathRecursively(pathTokens);
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	AER_FilesystemObject GetFilesystemObject(string path)
+	private AER_FilesystemObject GetFilesystemObjectByPathRecursively(array<string> pathTokens)
 	{
+		if (pathTokens.Count() == 0)
+			return null;
+		
+		string currentPathToken = pathTokens[0];
+		
+		foreach (ref AER_FilesystemObject fsObj : m_mFilesystem)
+		{
+			if (fsObj.GetName() == currentPathToken)
+			{
+				if (pathTokens.Count() == 1)
+					return fsObj;
+				else
+				{
+					pathTokens.RemoveOrdered(0);
+					
+					AER_DirectoryObject dirObj = AER_DirectoryObject.Cast(fsObj);
+					
+					return dirObj.GetFilesystemObjectByPathRecursively(pathTokens);
+				}
+			}
+		}
+		
 		// returns NULL if not found
-		return m_mFilesystem.Get(path);
+		return null;
 	}
 	
 	//------------------------------------------------------------------------------------------------

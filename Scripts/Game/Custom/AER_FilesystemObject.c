@@ -1,9 +1,3 @@
-enum EFilesystemObjectType
-{
-	FILE,
-	DIRECTORY
-}
-
 enum EFileContentType
 {
 	TEXT,
@@ -11,23 +5,15 @@ enum EFileContentType
 	EXECUTEABLE
 }
 
+[BaseContainerProps()]
 class AER_FilesystemObject
 {
-	protected EFilesystemObjectType m_eType;
-	protected EFileContentType m_eContentType;
-	protected string m_sContent;
-	
-	//------------------------------------------------------------------------------------------------
-	void AER_FilesystemObject(EFilesystemObjectType type, EFileContentType contentType, string content)
-	{
-		m_eType = type;
-		m_eContentType = contentType;
-		m_sContent = content;
-	}
+	[Attribute(defvalue: "", uiwidget: UIWidgets.EditBox, desc: "Name - must be unique in it's parent folder", params: "", category: "Advanced Equipment")]
+	protected string m_sName;
 
 	//------------------------------------------------------------------------------------------------
-	string GetContent()
+	string GetName()
 	{
-		return m_sContent;
+		return m_sName;
 	}
 }
