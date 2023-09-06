@@ -7,6 +7,10 @@ GenericEntity {
    m_mFilesystem {
     AER_DirectoryObject "{5E4A9D8083DAD05D}" {
      m_sName "tmp"
+     m_Permissions AER_Permissions "{5E4C8C4AAA92F718}" {
+      m_bOwnerExecute 1
+      m_bEveryoneExecute 1
+     }
      m_mChildren {
       AER_FileObject "{5E4A9D808F3733DC}" {
        m_sName "lala"
@@ -22,9 +26,35 @@ GenericEntity {
          "Zeile 3"
         }
         AER_FileObject "{5E4A9D8D11AA8034}" {
+         m_Permissions AER_Permissions "{5E4C710B39F8BFDD}" {
+         }
         }
        }
       }
+     }
+    }
+    AER_DirectoryObject "{5E4C8C4AB9B90E80}" {
+     m_sName "mnt"
+     m_Permissions AER_Permissions "{5E4C8C4ABAAD7B79}" {
+      m_bOwnerExecute 1
+      m_bEveryoneWrite 0
+      m_bEveryoneExecute 1
+     }
+    }
+    AER_DirectoryObject "{5E4C8C4ADF3A0388}" {
+     m_sName "var"
+     m_Permissions AER_Permissions "{5E4C8C4AD8B9B004}" {
+      m_bOwnerExecute 1
+      m_bEveryoneWrite 0
+      m_bEveryoneExecute 1
+     }
+    }
+    AER_DirectoryObject "{5E4C8C4AE07FEA89}" {
+     m_sName "root"
+     m_Permissions AER_Permissions "{5E4C8C4AF4E7B721}" {
+      m_bOwnerExecute 1
+      m_bEveryoneRead 0
+      m_bEveryoneWrite 0
      }
     }
    }
@@ -40,6 +70,11 @@ GenericEntity {
     AER_UserObject "{5E4A9DB05357A8A3}" {
      m_sUsername "admin"
      m_sPassword "admin123"
+     m_bLoginAllowed 1
+    }
+    AER_UserObject "{5E4C710B34905873}" {
+     m_sUsername "guest"
+     m_sPassword "guest123"
      m_bLoginAllowed 1
     }
    }
