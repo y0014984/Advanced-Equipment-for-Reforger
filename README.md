@@ -15,15 +15,6 @@
 
 **Advanced Equipment for Arma Reforger** is a mod for Arma Reforger, that is still under development.
 
-> [!NOTE]  
-> Highlights information that users should take into account, even when skimming.
-
-> [!IMPORTANT]  
-> Crucial information necessary for users to succeed.
-
-> [!WARNING]  
-> Critical content demanding immediate user attention due to potential risks.
-
 > [!WARNING]
 > Use at your own risk. Some parts may change drastically until it's first release.
 
