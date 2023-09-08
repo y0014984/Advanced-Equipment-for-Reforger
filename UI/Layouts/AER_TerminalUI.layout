@@ -80,14 +80,14 @@ FrameWidgetClass {
     OffsetBottom -864
    }
    components {
-    AER_TerminalCommandComponent "{5E48701BCBF4D6E9}" {
+    AER_EditBoxComponent "{5E50C5B7F57FD62C}" {
     }
    }
    "Placeholder text" "Enter your command here ..."
   }
   ImageWidgetClass "{5E487001A04141D7}" {
    Name "BackgroundTerminalInput"
-   Slot FrameWidgetSlot "{5E450E90E98EB8C9}" {
+   Slot FrameWidgetSlot "{5E4C8C41B992D5C1}" {
     PositionX 320
     OffsetLeft 320
     PositionY 832
@@ -99,6 +99,7 @@ FrameWidgetClass {
    }
    "Z Order" -1
    Color 0.038 0.038 0.038 1
+   Size 32 32
   }
   ButtonWidgetClass "{5E44DDE2B92EA506}" {
    Name "ButtonClose"

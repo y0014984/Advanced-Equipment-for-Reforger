@@ -67,6 +67,14 @@ class AER_TerminalUI : MenuBase
 			return;
 		}
 		
+		AER_EditBoxComponent editBoxComponent = AER_EditBoxComponent.GetEditBoxComponent(TERMINAL_INPUT, rootWidget);
+		if (editBoxComponent)
+		{
+			editBoxComponent.m_OnKeyPress.Insert(OnKeyPressInvoke);
+		}
+		else
+			Print("EditBoxComponent not found - won't be able to interact by button", LogLevel.WARNING);
+		
 		/*
 			ESC/Start listener
 		*/
@@ -137,6 +145,17 @@ class AER_TerminalUI : MenuBase
 		m_TerminalInputWidget.SetText("");
 		
 		UpdateTerminalOutput();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnKeyPressInvoke(Widget w, int x, int y, int key)
+	{
+		//PrintFormat("Invoke soccessful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
+		
+		if (key == EKeyCode.RETURN)
+		{
+			UpdateTerminal();
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
