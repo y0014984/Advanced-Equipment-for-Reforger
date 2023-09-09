@@ -12,6 +12,8 @@ class AER_TerminalUI : MenuBase
 	
 	protected TextWidget m_TerminalOutputWidget;
 	protected EditBoxWidget m_TerminalInputWidget;
+	
+	protected string m_sLastAllowedKey;
 
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
@@ -24,7 +26,7 @@ class AER_TerminalUI : MenuBase
 			Print("Error in layout creation", LogLevel.ERROR);
 			return;
 		}
-
+		
 		/*
 			Close button
 		*/
@@ -41,9 +43,9 @@ class AER_TerminalUI : MenuBase
 
 		SCR_ButtonTextComponent buttonAction = SCR_ButtonTextComponent.GetButtonText(BUTTON_ACTION, rootWidget);
 		if (buttonAction)
-			buttonAction.m_OnClicked.Insert(UpdateTerminal);
+			buttonAction.m_OnClicked.Insert(ActionButtonInvoke);
 		else
-			Print("Button Action not found - won't be able to interact by button", LogLevel.WARNING);
+			Print("Button Action not found - won't be able to interact", LogLevel.WARNING);
 		
 		/*
 			Terminal Output
@@ -55,6 +57,15 @@ class AER_TerminalUI : MenuBase
 			Print("Terminal Output could not be found", LogLevel.WARNING);
 			return;
 		}
+		
+		AER_TextComponent textComponent = AER_TextComponent.GetTextComponent(TERMINAL_OUTPUT, rootWidget);
+		if (textComponent)
+		{
+			textComponent.m_OnMouseButtonDown.Insert(OnMouseButtonDownInvoke2);
+			textComponent.m_OnKeyPress.Insert(OnKeyPressInvoke2);
+		}
+		else
+			Print("TextComponent not found - won't be able to interact", LogLevel.WARNING);
 		
 		/*
 			Terminal Input
@@ -71,6 +82,11 @@ class AER_TerminalUI : MenuBase
 		if (editBoxComponent)
 		{
 			editBoxComponent.m_OnKeyPress.Insert(OnKeyPressInvoke);
+			editBoxComponent.m_OnChange.Insert(OnChangeInvoke);
+			//editBoxComponent.m_HandlerAttached.Insert(EnableAutoUpdateSetFocusAndWriteMode);
+			editBoxComponent.m_HandlerDeattached.Insert(DisableAutoUpdateSetFocusAndWriteMode);
+			
+			GetGame().GetCallqueue().CallLater(SetFocusAndWriteMode, 250, true);
 		}
 		else
 			Print("EditBoxComponent not found - won't be able to interact by button", LogLevel.WARNING);
@@ -125,6 +141,8 @@ class AER_TerminalUI : MenuBase
 			
 			output += m_TerminalComponent.GetPrompt();
 			
+			output += m_TerminalComponent.GetCommandLineBuffer();
+			
 			m_TerminalOutputWidget.SetText(output);
 		}
 		else
@@ -142,20 +160,104 @@ class AER_TerminalUI : MenuBase
 		
 		m_TerminalComponent.ProcessCommandLine(commandLine);
 		
-		m_TerminalInputWidget.SetText("");
+		UpdateTerminalOutput();
+
+		m_TerminalInputWidget.SetText("");				
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void UpdateCommandLine()
+	{
+		string commandLine = m_TerminalInputWidget.GetText();
+		
+		m_TerminalComponent.SetCommandLineBuffer(commandLine);
 		
 		UpdateTerminalOutput();
 	}
 	
 	//------------------------------------------------------------------------------------------------
+	protected void SetFocusAndWriteMode()
+	{
+		if (GetRootWidget().GetWorkspace().GetFocusedWidget() != m_TerminalInputWidget)
+			GetRootWidget().GetWorkspace().SetFocusedWidget(m_TerminalInputWidget);
+		
+		if (!m_TerminalInputWidget.IsInWriteMode())
+			m_TerminalInputWidget.ActivateWriteMode();
+		
+		//PrintFormat("GetFocusedWidget: %1", GetGame().GetWorkspace().GetFocusedWidget());
+		//PrintFormat("IsInWriteMode: %1", m_TerminalInputWidget.IsInWriteMode());
+		//PrintFormat("IsEnabled: %1", m_TerminalInputWidget.IsEnabled());
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void EnableAutoUpdateSetFocusAndWriteMode()
+	{
+		Print("EnableAutoUpdateSetFocusAndWriteMode");
+		
+		GetGame().GetCallqueue().CallLater(SetFocusAndWriteMode, 1000, true);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void DisableAutoUpdateSetFocusAndWriteMode()
+	{
+		Print("DisableAutoUpdateSetFocusAndWriteMode");
+		
+		GetGame().GetCallqueue().Remove(SetFocusAndWriteMode);
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	protected void OnKeyPressInvoke(Widget w, int x, int y, int key)
 	{
-		//PrintFormat("Invoke soccessful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
+		PrintFormat("OnKeyPressInvoke successful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
 		
 		if (key == EKeyCode.RETURN)
 		{
 			UpdateTerminal();
+			
+			return;
 		}
+		
+		map<int, string> allowedKeys = new map<int, string>();
+		allowedKeys.Set(97, "a");
+		allowedKeys.Set(98, "b");
+		allowedKeys.Set(99, "c");
+
+		if (allowedKeys.Contains(key))
+			m_sLastAllowedKey = allowedKeys.Get(key);
+		else
+			m_sLastAllowedKey = "";
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnChangeInvoke(Widget w)
+	{
+		PrintFormat("OnChangeInvoke successful with parameters w: %1", w);
+		
+		PrintFormat("m_sLastAllowedKey: %1", m_sLastAllowedKey);
+		
+		// we could allow all values, so this is commented out
+		//if (m_sLastAllowedKey != "")
+		//	UpdateCommandLine();
+		
+		UpdateCommandLine();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnKeyPressInvoke2(Widget w, int x, int y, int key)
+	{
+		PrintFormat("Invoke successful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnMouseButtonDownInvoke2(Widget w, int x, int y, int button)
+	{
+		PrintFormat("Invoke successful with parameters w: %1 x %2, y: %3 button: %4", w, x, y, button);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void ActionButtonInvoke(Widget w, int x, int y, int button)
+	{
+		PrintFormat("GetFocusedWidget: %1", GetGame().GetWorkspace().GetFocusedWidget());
 	}
 	
 	//------------------------------------------------------------------------------------------------

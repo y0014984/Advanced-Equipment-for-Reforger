@@ -9,6 +9,7 @@ class AER_TerminalComponent : ScriptComponent
 	protected AER_FilesystemComponent m_FilesystemComponent;
 	
 	protected string m_sTerminalOutputBuffer;
+	protected string m_sCommandLineBuffer;
 
 	//------------------------------------------------------------------------------------------------
 	void AER_TerminalComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
@@ -48,6 +49,18 @@ class AER_TerminalComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
+	void SetCommandLineBuffer(string commandLine)
+	{
+		m_sCommandLineBuffer = commandLine;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	string GetCommandLineBuffer()
+	{
+		return m_sCommandLineBuffer;
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	void AddOutputLine(string outputLine)
 	{
 		m_sTerminalOutputBuffer += outputLine + "\n";
@@ -56,6 +69,9 @@ class AER_TerminalComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void ProcessCommandLine(string commandLine)
 	{
+		if (commandLine.Length() == 0)
+			return;
+		
 		array<string> commandLineTokens = {};
 		commandLine.Split(" ", commandLineTokens, true);
 		
@@ -90,6 +106,8 @@ class AER_TerminalComponent : ScriptComponent
 				AddOutputLine(string.Format("sh: %1: not found", command));
 				break;
 		}
+		
+		SetCommandLineBuffer("");
 	}
 	
 	//------------------------------------------------------------------------------------------------

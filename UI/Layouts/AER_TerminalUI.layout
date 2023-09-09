@@ -35,7 +35,7 @@ FrameWidgetClass {
    "Z Order" -1
    Color 0.013 0.013 0.013 1
   }
-  MultilineEditBoxWidgetClass "{5E44DDE2C605A8AE}" {
+  TextWidgetClass "{5E44DDE2C605A8AE}" {
    Name "TerminalOutput"
    Slot FrameWidgetSlot "{5E44DDE2C605A88B}" {
     PositionX 320
@@ -46,6 +46,10 @@ FrameWidgetClass {
     OffsetRight -1600
     SizeY 592
     OffsetBottom -824
+   }
+   components {
+    AER_TextComponent "{5E52D4B42877E5D9}" {
+    }
    }
    Text ""
    FontProperties FontProperties "{5E44DDE047C5A886}" {
@@ -83,7 +87,6 @@ FrameWidgetClass {
     AER_EditBoxComponent "{5E50C5B7F57FD62C}" {
     }
    }
-   "Placeholder text" "Enter your command here ..."
   }
   ImageWidgetClass "{5E487001A04141D7}" {
    Name "BackgroundTerminalInput"

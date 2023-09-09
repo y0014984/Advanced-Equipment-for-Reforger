@@ -1,6 +1,9 @@
 enum EKeyCode
 {
-	RETURN = 13
+	RETURN 		= 13,
+	A 			= 97,
+	B 			= 98,
+	C 			= 99
 }
 
 //------------------------------------------------------------------------------------------------
@@ -11,36 +14,39 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 	ref ScriptInvoker m_OnKeyPress = new ScriptInvoker();
 	ref ScriptInvoker m_OnChange = new ScriptInvoker();
 	ref ScriptInvoker m_OnUpdate = new ScriptInvoker();
+	ref ScriptInvoker m_OnFocus = new ScriptInvoker();
+	ref ScriptInvoker m_OnFocusLost = new ScriptInvoker();
 	
-	/*
+	ref ScriptInvoker m_HandlerAttached = new ScriptInvoker();
+	ref ScriptInvoker m_HandlerDeattached = new ScriptInvoker();
+	
 	//------------------------------------------------------------------------------------------------
 	override bool OnMouseButtonDown(Widget w, int x, int y, int button)
 	{
+		// works for EditBox
+		
 		// 0 = Left Mouse button
 		// 1 = Right Mouse Button
 		// 2 = Middle Mouse Button
 		
-		PrintFormat("AER OnMouseButtonDown: %1", button);
+		PrintFormat("AER EditBox Component OnMouseButtonDown: %1", button);
 		
 		if (m_OnMouseButtonDown)
 			m_OnMouseButtonDown.Invoke(w);
 		
-		return false;
+		return false;	
 	}
-	*/
 	
-	/*
 	//------------------------------------------------------------------------------------------------
 	override bool OnKeyDown(Widget w, int x, int y, int key)
 	{
-		PrintFormat("AER OnKeyDown: %1", key);
+		PrintFormat("AER EditBox Component OnKeyDown: %1", key);
 		
 		if (m_OnKeyDown)
 			m_OnKeyDown.Invoke(w);
 		
 		return super.OnKeyDown(w, x, y, key);
 	}
-	*/
 
 	//------------------------------------------------------------------------------------------------
 	override bool OnKeyPress(Widget w, int x, int y, int key)
@@ -64,8 +70,7 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 		// this enum uses other codes, for example 'Return' is 28 instead of 13
 		// I can't use this enum for this case, but I could build my own
 		
-		
-		PrintFormat("AER OnKeyPress: %1", key);
+		//PrintFormat("AER EditBox Component OnKeyPress: %1", key);
 		
 		if (m_OnKeyPress)
 			m_OnKeyPress.Invoke(w, x, y, key);
@@ -73,35 +78,84 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 		return super.OnKeyPress(w, x, y, key);
 	}
 	
-	/*
 	//------------------------------------------------------------------------------------------------
 	override bool OnChange(Widget w, int x, int y, bool finished)
 	{
-		// triggers if content changes or on some special keys, like 'Del' which does not
-		// fire the 'OnKeyPress' event
+		// works for EditBox; 'finished' is 0 until pressing 'Return' or 'Enter'; then it becomes 1
 		
-		PrintFormat("AER OnChange: %1", finished);
+		PrintFormat("AER EditBox Component OnChange: %1", finished);
 		
 		if (m_OnChange)
 			m_OnChange.Invoke(w);
 		
-		return super.OnChange(w, x, y, key);
+		return super.OnChange(w, x, y, finished);
 	}
-	*/
 	
-	/*
 	//------------------------------------------------------------------------------------------------
 	override bool OnUpdate(Widget w)
 	{
-		PrintFormat("AER OnUpdate");
+		// works for EditBox; Fires wenn pressing 'Return' or 'Enter'
+		
+		PrintFormat("AER EditBox Component OnUpdate");
 		
 		if (m_OnUpdate)
 			m_OnUpdate.Invoke(w);
 		
-		return super.OnUpdate(w, x, y, key);
+		return super.OnUpdate(w);
 	}
-	*/
 
+	//------------------------------------------------------------------------------------------------
+	override bool OnFocus(Widget w, int x, int y)
+	{
+		// works for EditBox; Fires when getting the focus
+		
+		PrintFormat("AER EditBox Component OnFocus");
+		
+		if (m_OnUpdate)
+			m_OnUpdate.Invoke(w);
+		
+		return super.OnFocus(w, x, y);
+	}
+	
+	//------------------------------------------------------------------------------------------------	
+	override bool OnFocusLost(Widget w, int x, int y)
+	{
+		// works for EditBox; Fires when losing the focus
+		
+		PrintFormat("AER EditBox Component OnFocusLost");
+		
+		if (m_OnUpdate)
+			m_OnUpdate.Invoke(w);
+		
+		return super.OnFocusLost(w, x, y);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void HandlerAttached(Widget w)
+	{
+		// works for EditBox; Fires when the component is attached to the editbox (on menu/dialog start)
+		
+		super.HandlerAttached(w);
+		
+		PrintFormat("AER EditBox Component HandlerAttached");
+		
+		if (m_HandlerAttached)
+			m_HandlerAttached.Invoke(w);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	override void HandlerDeattached(Widget w)
+	{
+		// works for EditBox; Fires when the component is deattached to the editbox (on menu/dialog end)
+		
+		super.HandlerDeattached(w);
+		
+		PrintFormat("AER EditBox Component HandlerDeattached");
+		
+		if (m_HandlerDeattached)
+			m_HandlerDeattached.Invoke(w);
+	}
+	
 	//------------------------------------------------------------------------------------------------
 	static AER_EditBoxComponent GetEditBoxComponent(string name, Widget parent, bool searchAllChildren = true)
 	{
