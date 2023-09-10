@@ -13,8 +13,6 @@ class AER_TerminalUI : MenuBase
 	protected TextWidget m_TerminalOutputWidget;
 	protected EditBoxWidget m_TerminalInputWidget;
 	
-	protected string m_sLastAllowedKey;
-
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
 	{
@@ -58,15 +56,6 @@ class AER_TerminalUI : MenuBase
 			return;
 		}
 		
-		AER_TextComponent textComponent = AER_TextComponent.GetTextComponent(TERMINAL_OUTPUT, rootWidget);
-		if (textComponent)
-		{
-			textComponent.m_OnMouseButtonDown.Insert(OnMouseButtonDownInvoke2);
-			textComponent.m_OnKeyPress.Insert(OnKeyPressInvoke2);
-		}
-		else
-			Print("TextComponent not found - won't be able to interact", LogLevel.WARNING);
-		
 		/*
 			Terminal Input
 		*/
@@ -81,15 +70,13 @@ class AER_TerminalUI : MenuBase
 		AER_EditBoxComponent editBoxComponent = AER_EditBoxComponent.GetEditBoxComponent(TERMINAL_INPUT, rootWidget);
 		if (editBoxComponent)
 		{
-			editBoxComponent.m_OnKeyPress.Insert(OnKeyPressInvoke);
 			editBoxComponent.m_OnChange.Insert(OnChangeInvoke);
-			//editBoxComponent.m_HandlerAttached.Insert(EnableAutoUpdateSetFocusAndWriteMode);
-			editBoxComponent.m_HandlerDeattached.Insert(DisableAutoUpdateSetFocusAndWriteMode);
-			
-			GetGame().GetCallqueue().CallLater(SetFocusAndWriteMode, 250, true);
 		}
 		else
 			Print("EditBoxComponent not found - won't be able to interact by button", LogLevel.WARNING);
+		
+		Print("AER Added Focus and Write Mode Hack");
+		GetGame().GetCallqueue().CallLater(SetFocusAndWriteMode, 250, true);
 		
 		/*
 			ESC/Start listener
@@ -130,6 +117,9 @@ class AER_TerminalUI : MenuBase
 			inputManager.RemoveActionListener("MenuBackWB", EActionTrigger.DOWN, Close);
 #endif
 		}
+		
+		Print("AER Removed Focus and Write Mode Hack");
+		GetGame().GetCallqueue().Remove(SetFocusAndWriteMode);
 	}
 
 	//------------------------------------------------------------------------------------------------	
@@ -154,15 +144,11 @@ class AER_TerminalUI : MenuBase
 	//------------------------------------------------------------------------------------------------
 	protected void UpdateTerminal()
 	{
-		string commandLine = m_TerminalInputWidget.GetText();
-		
-		m_TerminalComponent.AddCommandLine(commandLine);
-		
-		m_TerminalComponent.ProcessCommandLine(commandLine);
+		m_TerminalComponent.ProcessCommandLine();
 		
 		UpdateTerminalOutput();
 
-		m_TerminalInputWidget.SetText("");				
+		m_TerminalInputWidget.SetText("");
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -190,74 +176,18 @@ class AER_TerminalUI : MenuBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void EnableAutoUpdateSetFocusAndWriteMode()
+	protected void OnChangeInvoke(Widget w, int x, int y, bool finished)
 	{
-		Print("EnableAutoUpdateSetFocusAndWriteMode");
-		
-		GetGame().GetCallqueue().CallLater(SetFocusAndWriteMode, 1000, true);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void DisableAutoUpdateSetFocusAndWriteMode()
-	{
-		Print("DisableAutoUpdateSetFocusAndWriteMode");
-		
-		GetGame().GetCallqueue().Remove(SetFocusAndWriteMode);
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void OnKeyPressInvoke(Widget w, int x, int y, int key)
-	{
-		PrintFormat("OnKeyPressInvoke successful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
-		
-		if (key == EKeyCode.RETURN)
-		{
+		if(finished)
 			UpdateTerminal();
-			
-			return;
-		}
-		
-		map<int, string> allowedKeys = new map<int, string>();
-		allowedKeys.Set(97, "a");
-		allowedKeys.Set(98, "b");
-		allowedKeys.Set(99, "c");
-
-		if (allowedKeys.Contains(key))
-			m_sLastAllowedKey = allowedKeys.Get(key);
 		else
-			m_sLastAllowedKey = "";
+			UpdateCommandLine();
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void OnChangeInvoke(Widget w)
-	{
-		PrintFormat("OnChangeInvoke successful with parameters w: %1", w);
-		
-		PrintFormat("m_sLastAllowedKey: %1", m_sLastAllowedKey);
-		
-		// we could allow all values, so this is commented out
-		//if (m_sLastAllowedKey != "")
-		//	UpdateCommandLine();
-		
-		UpdateCommandLine();
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void OnKeyPressInvoke2(Widget w, int x, int y, int key)
-	{
-		PrintFormat("Invoke successful with parameters w: %1 x %2, y: %3 key: %4", w, x, y, key);
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void OnMouseButtonDownInvoke2(Widget w, int x, int y, int button)
-	{
-		PrintFormat("Invoke successful with parameters w: %1 x %2, y: %3 button: %4", w, x, y, button);
-	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	protected void ActionButtonInvoke(Widget w, int x, int y, int button)
 	{
-		PrintFormat("GetFocusedWidget: %1", GetGame().GetWorkspace().GetFocusedWidget());
+		// For Testing only
 	}
 	
 	//------------------------------------------------------------------------------------------------

@@ -35,6 +35,25 @@ FrameWidgetClass {
    "Z Order" -1
    Color 0.013 0.013 0.013 1
   }
+  EditBoxWidgetClass "{5E4870007A015174}" {
+   Name "TerminalInput"
+   Slot FrameWidgetSlot "{5E4870007A01515C}" {
+    PositionX 320
+    OffsetLeft 320
+    PositionY 232
+    OffsetTop 232
+    SizeX 1280
+    OffsetRight -1600
+    SizeY 632
+    OffsetBottom -864
+   }
+   "Z Order" 1
+   Opacity 0
+   components {
+    AER_EditBoxComponent "{5E50C5B7F57FD62C}" {
+    }
+   }
+  }
   TextWidgetClass "{5E44DDE2C605A8AE}" {
    Name "TerminalOutput"
    Slot FrameWidgetSlot "{5E44DDE2C605A88B}" {
@@ -44,8 +63,8 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 592
-    OffsetBottom -824
+    SizeY 632
+    OffsetBottom -864
    }
    components {
     AER_TextComponent "{5E52D4B42877E5D9}" {
@@ -65,44 +84,11 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 592
-    OffsetBottom -824
-   }
-   "Z Order" -1
-   Color 0.038 0.038 0.038 1
-  }
-  EditBoxWidgetClass "{5E4870007A015174}" {
-   Name "TerminalInput"
-   Slot FrameWidgetSlot "{5E4870007A01515C}" {
-    PositionX 320
-    OffsetLeft 320
-    PositionY 832
-    OffsetTop 832
-    SizeX 1280
-    OffsetRight -1600
-    SizeY 32
-    OffsetBottom -864
-   }
-   components {
-    AER_EditBoxComponent "{5E50C5B7F57FD62C}" {
-    }
-   }
-  }
-  ImageWidgetClass "{5E487001A04141D7}" {
-   Name "BackgroundTerminalInput"
-   Slot FrameWidgetSlot "{5E4C8C41B992D5C1}" {
-    PositionX 320
-    OffsetLeft 320
-    PositionY 832
-    OffsetTop 832
-    SizeX 1280
-    OffsetRight -1600
-    SizeY 32
+    SizeY 632
     OffsetBottom -864
    }
    "Z Order" -1
    Color 0.038 0.038 0.038 1
-   Size 32 32
   }
   ButtonWidgetClass "{5E44DDE2B92EA506}" {
    Name "ButtonClose"

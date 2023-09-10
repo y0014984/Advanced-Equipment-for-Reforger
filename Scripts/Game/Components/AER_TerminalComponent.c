@@ -1,3 +1,15 @@
+/*
+
+This entity component needs to be added to a computer to process terminal commands.
+This component depends on these components:
+
+  - AER_UsersComponent
+  - AER_FilesystemComponent
+
+Idea: perhaps we should create a generic 'command' class that processes the arguments
+
+*/
+
 [ComponentEditorProps(category: "GameScripted/Misc", description: "")]
 class AER_TerminalComponentClass : ScriptComponentClass
 {
@@ -43,12 +55,6 @@ class AER_TerminalComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void AddCommandLine(string commandLine)
-	{
-		m_sTerminalOutputBuffer += GetPrompt() + commandLine + "\n";
-	}
-	
-	//------------------------------------------------------------------------------------------------
 	void SetCommandLineBuffer(string commandLine)
 	{
 		m_sCommandLineBuffer = commandLine;
@@ -67,13 +73,15 @@ class AER_TerminalComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void ProcessCommandLine(string commandLine)
+	void ProcessCommandLine()
 	{
-		if (commandLine.Length() == 0)
+		m_sTerminalOutputBuffer += GetPrompt() + m_sCommandLineBuffer + "\n";
+		
+		if (m_sCommandLineBuffer.Length() == 0)
 			return;
 		
 		array<string> commandLineTokens = {};
-		commandLine.Split(" ", commandLineTokens, true);
+		m_sCommandLineBuffer.Split(" ", commandLineTokens, true);
 		
 		string command = commandLineTokens[0];
 		
