@@ -3,7 +3,6 @@ class AER_TerminalUI : MenuBase
 	protected static const string TERMINAL_OUTPUT = "TerminalOutput";
 	protected static const string TERMINAL_INPUT = "TerminalInput";
 	protected static const string BUTTON_CLOSE = "ButtonClose";
-	protected static const string BUTTON_ACTION = "ButtonAction";
 	
 	protected AER_OpenCloseStateComponent m_OpenCloseStateComponent;
 	protected AER_PowerStateComponent m_PowerStateComponent;
@@ -12,6 +11,16 @@ class AER_TerminalUI : MenuBase
 	
 	protected TextWidget m_TerminalOutputWidget;
 	protected EditBoxWidget m_TerminalInputWidget;
+	
+	protected static const int TERMINAL_MAX_CHAR_WIDTH = 88;
+	protected static const int TERMINAL_MAX_CHAR_HEIGHT = 28;
+	
+	protected static const int TERMINAL_FONT_SIZE = 24;
+	protected static const float TERMINAL_FONT_CHAR_WIDTH = 14.5689655172;
+	protected static const float TERMINAL_FONT_CHAR_HEIGHT = 25.7222222222;
+	
+	protected static const int TERMINAL_INPUT_EDITBOX_POS_X = 319;
+	protected static const int TERMINAL_INPUT_EDITBOX_POS_Y = 231;
 	
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
@@ -29,22 +38,12 @@ class AER_TerminalUI : MenuBase
 			Close button
 		*/
 
-		SCR_ButtonTextComponent buttonClose = SCR_ButtonTextComponent.GetButtonText(BUTTON_CLOSE, rootWidget);
-		if (buttonClose)
-			buttonClose.m_OnClicked.Insert(Close);
+		AER_ButtonComponent buttonComponent = AER_ButtonComponent.GetButtonComponent(BUTTON_CLOSE, rootWidget);
+		if (buttonComponent)
+			buttonComponent.m_OnClick.Insert(OnClickInvoke);
 		else
 			Print("Button Close not found - won't be able to exit by button", LogLevel.WARNING);
 
-		/*
-			Action button
-		*/
-
-		SCR_ButtonTextComponent buttonAction = SCR_ButtonTextComponent.GetButtonText(BUTTON_ACTION, rootWidget);
-		if (buttonAction)
-			buttonAction.m_OnClicked.Insert(ActionButtonInvoke);
-		else
-			Print("Button Action not found - won't be able to interact", LogLevel.WARNING);
-		
 		/*
 			Terminal Output
 		*/
@@ -95,7 +94,7 @@ class AER_TerminalUI : MenuBase
 			inputManager.AddActionListener("MenuBackWB", EActionTrigger.DOWN, Close);
 #endif
 		}
-		else if (!buttonClose)
+		else if (!buttonComponent)
 		{
 			Print("Auto-closing the menu that has no exit path", LogLevel.WARNING);
 			Close();
@@ -125,20 +124,15 @@ class AER_TerminalUI : MenuBase
 	//------------------------------------------------------------------------------------------------	
 	protected void UpdateTerminalOutput()
 	{	
-		if(m_TerminalComponent)
-		{
-			string output = m_TerminalComponent.GetTerminalOutputBuffer();
+		string output = m_TerminalComponent.GetTerminalOutputBuffer();
 			
-			output += m_TerminalComponent.GetPrompt();
+		output += m_TerminalComponent.GetPrompt();
 			
-			output += m_TerminalComponent.GetCommandLineBuffer();
+		output += m_TerminalComponent.GetCommandLineBuffer();
 			
-			m_TerminalOutputWidget.SetText(output);
-		}
-		else
-		{
-			m_TerminalOutputWidget.SetText("Components not initialized yet");
-		}
+		m_TerminalOutputWidget.SetText(output);
+		
+		UpdateInputEditBoxPosAndSize();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -149,6 +143,31 @@ class AER_TerminalUI : MenuBase
 		UpdateTerminalOutput();
 
 		m_TerminalInputWidget.SetText("");
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void UpdateInputEditBoxPosAndSize()
+	{
+		string terminalOutputBuffer = m_TerminalComponent.GetTerminalOutputBuffer();
+
+		array<string> terminalOutputBufferLines = {};
+		terminalOutputBuffer.Split("\n", terminalOutputBufferLines, false);
+		
+		int terminalOutputBufferLinesCount = terminalOutputBufferLines.Count();
+		
+		int promptLength = m_TerminalComponent.GetPrompt().Length();
+		
+		float posX = FrameSlot.GetPosX(m_TerminalInputWidget);
+		float posY = FrameSlot.GetPosY(m_TerminalInputWidget);
+		
+		posX = TERMINAL_INPUT_EDITBOX_POS_X + (promptLength * TERMINAL_FONT_CHAR_WIDTH);
+		posY = TERMINAL_INPUT_EDITBOX_POS_Y + ((terminalOutputBufferLinesCount - 1) * TERMINAL_FONT_CHAR_HEIGHT);
+				
+		float sizeX = (TERMINAL_MAX_CHAR_WIDTH - promptLength) * TERMINAL_FONT_CHAR_WIDTH;
+		float sizeY = TERMINAL_FONT_CHAR_HEIGHT;
+		
+		FrameSlot.SetPos(m_TerminalInputWidget, posX, posY);
+		FrameSlot.SetSize(m_TerminalInputWidget, sizeX, sizeY);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -176,6 +195,16 @@ class AER_TerminalUI : MenuBase
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void OnClickInvoke(Widget w, int x, int y, int button)
+	{
+		m_TerminalComponent.SyncTerminalData();
+		
+		m_TerminalComponent.SetInUse(false);
+		
+		Close();
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	protected void OnChangeInvoke(Widget w, int x, int y, bool finished)
 	{
 		if(finished)
@@ -184,12 +213,6 @@ class AER_TerminalUI : MenuBase
 			UpdateCommandLine();
 	}
 
-	//------------------------------------------------------------------------------------------------
-	protected void ActionButtonInvoke(Widget w, int x, int y, int button)
-	{
-		// For Testing only
-	}
-	
 	//------------------------------------------------------------------------------------------------
 	void SetOpenCloseStateComponent(AER_OpenCloseStateComponent component)
 	{

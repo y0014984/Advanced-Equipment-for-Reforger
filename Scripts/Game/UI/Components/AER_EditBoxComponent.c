@@ -38,9 +38,9 @@ enum EKeyCode
 }
 
 //------------------------------------------------------------------------------------------------
-class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
+class AER_EditBoxComponent : AER_ScriptedWidgetComponent
 {
-	ref ScriptInvoker m_OnClickNew = new ScriptInvoker(); // added 'new' to name because var is declared in SCR_ScriptedWidgetComponent
+	ref ScriptInvoker m_OnClick = new ScriptInvoker();
 	ref ScriptInvoker m_OnDoubleClick = new ScriptInvoker();
 	
 	ref ScriptInvoker m_OnFocus = new ScriptInvoker();
@@ -75,8 +75,8 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 		
 		PrintFormat("AER EditBox Component OnClick: %1 %2 %3 %4", w, x, y, button);
 		
-		if (m_OnClickNew)
-			m_OnClickNew.Invoke(w, x, y, button);
+		if (m_OnClick)
+			m_OnClick.Invoke(w, x, y, button);
 		
 		return super.OnClick(w, x, y, button);
 	}
@@ -105,8 +105,8 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 		
 		PrintFormat("AER EditBox Component OnFocus: %1 %2 %3", w, x, y);
 		
-		if (m_OnUpdate)
-			m_OnUpdate.Invoke(w, x, y);
+		if (m_OnFocus)
+			m_OnFocus.Invoke(w, x, y);
 		
 		return super.OnFocus(w, x, y);
 	}
@@ -118,8 +118,8 @@ class AER_EditBoxComponent : SCR_ScriptedWidgetComponent
 		
 		PrintFormat("AER EditBox Component OnFocusLost: %1 %2 %3", w, x, y);
 		
-		if (m_OnUpdate)
-			m_OnUpdate.Invoke(w, x, y);
+		if (m_OnFocusLost)
+			m_OnFocusLost.Invoke(w, x, y);
 		
 		return super.OnFocusLost(w, x, y);
 	}

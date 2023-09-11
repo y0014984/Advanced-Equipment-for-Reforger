@@ -5,6 +5,9 @@ StaticModelEntity : "{5019513019F0885A}Prefabs/Props/Military/Furniture/TableMil
  coords 1268.984 37.484 2936.715
  angleY -170.812
 }
+Vehicle M1 : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
+ coords 1267.805 37.438 2942.118
+}
 GenericEntity : "{5C5C6EE05EE2FF1A}Prefabs/Items/Equipment/Backpacks/Backpack_ALICE_Medium_assembled.et" {
  coords 1267.906 37.469 2937.831
 }
@@ -13,6 +16,9 @@ GenericEntity : "{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.
 }
 GenericEntity : "{C98FCC6CA6C56069}Prefabs/Items/Medicine/AspirinBottle.et" {
  coords 1267.304 37.469 2936.946
+}
+SCR_SpawnPoint : "{CEA2B24051A44525}PrefabsEditable/SpawnPoints/E_SpawnPoint_US.et" {
+ coords 1278.863 37.438 2926.012
 }
 GenericEntity MyLaptop : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
  coords 1269.425 38.39 2936.624
