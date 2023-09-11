@@ -20,16 +20,54 @@ class AER_TerminalComponent : ScriptComponent
 	protected AER_UsersComponent m_UsersComponent;
 	protected AER_FilesystemComponent m_FilesystemComponent;
 	
+	[RplProp()]
 	protected string m_sTerminalOutputBuffer;
+	
+	[RplProp()]
 	protected string m_sCommandLineBuffer;
-
+	
+	[RplProp()]
+	protected bool m_bInUse;
+	
 	//------------------------------------------------------------------------------------------------
 	void AER_TerminalComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 		m_UsersComponent = AER_UsersComponent.Cast(GetOwner().FindComponent(AER_UsersComponent));
 		m_FilesystemComponent = AER_FilesystemComponent.Cast(GetOwner().FindComponent(AER_FilesystemComponent));
 	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_SyncTerminalData(string terminalOutputBuffer, string commandLineBuffer)
+	{
+		Print("authority-side code: syncing variables across all clients");
+		
+		m_sTerminalOutputBuffer = terminalOutputBuffer;
+		m_sCommandLineBuffer = commandLineBuffer;
+
+		Replication.BumpMe();
+	}
 	
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_SyncInUseState(bool inUse)
+	{
+		Print("authority-side code: syncing variables across all clients");
+		
+		m_bInUse = inUse;
+
+		Replication.BumpMe();
+		
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SyncTerminalData()
+	{
+		Print("Sync Terminal Data");
+		
+		Rpc(RpcAsk_SyncTerminalData, m_sTerminalOutputBuffer, m_sCommandLineBuffer);
+	}
+
 	//------------------------------------------------------------------------------------------------
 	string GetPrompt()
 	{
@@ -40,6 +78,20 @@ class AER_TerminalComponent : ScriptComponent
 		
 		string prompt = m_UsersComponent.GetUserLoggedIn() + "@armaOS:" + m_FilesystemComponent.GetWorkingDirectory() + ">";
 		return prompt;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	bool IsInUse()
+	{
+		return m_bInUse;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void SetInUse(bool inUse)
+	{
+		m_bInUse = inUse;
+		
+		Rpc(RpcAsk_SyncInUseState, m_bInUse);
 	}
 	
 	//------------------------------------------------------------------------------------------------
