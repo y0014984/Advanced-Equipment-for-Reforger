@@ -6,15 +6,16 @@ FrameWidgetClass {
    Slot FrameWidgetSlot "{5E44DDE2CB1C01A4}" {
     PositionX 320
     OffsetLeft 320
-    PositionY 184
-    OffsetTop 184
+    PositionY 160
+    OffsetTop 160
     SizeX 1280
     OffsetRight -1600
-    SizeY 40.5
+    SizeY 64.5
     OffsetBottom -224.5
    }
    Text "armaOS Terminal for Reforger v0.1"
    "Font Size" 36
+   "Vertical Alignment" Center
    FontProperties FontProperties "{5E44DDE0AC86A2A1}" {
     Font "{DE4B66C39B62E39B}UI/Fonts/Purista/Purista Medium.fnt"
     Bold 1
@@ -25,33 +26,65 @@ FrameWidgetClass {
    Slot FrameWidgetSlot "{5E4512AF9D32A3EF}" {
     PositionX 320
     OffsetLeft 320
-    PositionY 184
-    OffsetTop 184
+    PositionY 160
+    OffsetTop 160
     SizeX 1280
     OffsetRight -1600
-    SizeY 40
+    SizeY 64
     OffsetBottom -224
    }
    "Z Order" -1
    Color 0.013 0.013 0.013 1
   }
+  ButtonWidgetClass "{5E46691D96EF1037}" {
+   Name "ButtonClose"
+   Slot FrameWidgetSlot "{5E44DDE2B92EA56C}" {
+    PositionX 1536
+    OffsetLeft 1536
+    PositionY 160
+    OffsetTop 160
+    SizeX 64
+    OffsetRight -1600
+    SizeY 64
+    OffsetBottom -224
+   }
+   "Z Order" 1
+   Color 0 0 0 0
+   components {
+    AER_ButtonComponent "{5E54C8212481DD4A}" {
+    }
+   }
+   {
+    ImageWidgetClass "{5E54C82306F8C5D1}" {
+     Name "ImageClose"
+     Slot ButtonWidgetSlot "{5E54C8205FCCEFEF}" {
+     }
+     Texture "{19F5AE82FCEEDDDE}UI/Layouts/AE3_close.edds"
+     Size 256 256
+    }
+   }
+  }
   EditBoxWidgetClass "{5E4870007A015174}" {
    Name "TerminalInput"
    Slot FrameWidgetSlot "{5E4870007A01515C}" {
-    PositionX 320
-    OffsetLeft 320
-    PositionY 232
-    OffsetTop 232
+    PositionX 319
+    OffsetLeft 319
+    PositionY 231
+    OffsetTop 231
     SizeX 1280
-    OffsetRight -1600
-    SizeY 632
-    OffsetBottom -864
+    OffsetRight -1599
+    SizeY 26
+    OffsetBottom -257
    }
    "Z Order" 1
-   Opacity 0
+   Opacity 0.75
+   Color 1 0 0 1
    components {
     AER_EditBoxComponent "{5E50C5B7F57FD62C}" {
     }
+   }
+   FontProperties FontProperties "{5E56C8D3E9BE13FF}" {
+    Font "{0E041C5B1F27DCEA}ui/fonts/robotomono_msdf_28.fnt"
    }
   }
   TextWidgetClass "{5E44DDE2C605A8AE}" {
@@ -63,8 +96,8 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 632
-    OffsetBottom -864
+    SizeY 720
+    OffsetBottom -952
    }
    components {
     AER_TextComponent "{5E52D4B42877E5D9}" {
@@ -84,69 +117,11 @@ FrameWidgetClass {
     OffsetTop 232
     SizeX 1280
     OffsetRight -1600
-    SizeY 632
-    OffsetBottom -864
+    SizeY 720
+    OffsetBottom -952
    }
    "Z Order" -1
    Color 0.038 0.038 0.038 1
-  }
-  ButtonWidgetClass "{5E44DDE2B92EA506}" {
-   Name "ButtonClose"
-   Slot FrameWidgetSlot "{5E44DDE2B92EA56C}" {
-    PositionX 1496
-    OffsetLeft 1496
-    PositionY 872
-    OffsetTop 872
-    SizeX 104
-    OffsetRight -1600
-    SizeY 32
-    OffsetBottom -904
-   }
-   Color 0 0 0 1
-   components {
-    SCR_ButtonTextComponent "{5E44DDE3D7A4755F}" {
-     m_BackgroundDefault 0 0 0 0.1
-     m_BackgroundHovered 0.031 0.031 0.031 0.3
-     m_sText "CLOSE"
-    }
-   }
-   {
-    TextWidgetClass "{5E44DDE3B9AA7BF0}" {
-     Name "Text"
-     Slot ButtonWidgetSlot "{5E450E91AFE02C16}" {
-     }
-     "Z Order" 1
-    }
-   }
-  }
-  ButtonWidgetClass "{5E46691D96EF1037}" {
-   Name "ButtonAction"
-   Slot FrameWidgetSlot "{5E44DDE2B92EA56C}" {
-    PositionX 320
-    OffsetLeft 320
-    PositionY 872
-    OffsetTop 872
-    SizeX 104
-    OffsetRight -424
-    SizeY 32
-    OffsetBottom -904
-   }
-   Color 0 0 0 1
-   components {
-    SCR_ButtonTextComponent "{5E44DDE3D7A4755F}" {
-     m_BackgroundDefault 0 0 0 0.1
-     m_BackgroundHovered 0.031 0.031 0.031 0.3
-     m_sText "ACTION"
-    }
-   }
-   {
-    TextWidgetClass "{5E46691D96EF1036}" {
-     Name "Text"
-     Slot ButtonWidgetSlot "{5E450E91AFE02C16}" {
-     }
-     "Z Order" 1
-    }
-   }
   }
  }
 }
