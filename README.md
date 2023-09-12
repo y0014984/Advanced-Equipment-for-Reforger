@@ -13,7 +13,7 @@
 
 # Advanced Equipment for Arma Reforger
 
-**Advanced Equipment** is a mod for Arma Reforger, that is still under development.
+**Advanced Equipment** is a mod for Arma Reforger, that is still under development. I wanted to create a mod, that allows you to really use equipment like laptops and lamps.
 
 > [!WARNING]
 > Use at your own risk. Some parts may change drastically until it's first release.
