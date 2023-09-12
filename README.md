@@ -13,7 +13,7 @@
 
 # Advanced Equipment for Arma Reforger
 
-**Advanced Equipment for Arma Reforger** is a mod for Arma Reforger, that is still under development.
+**Advanced Equipment** is a mod for Arma Reforger, that is still under development.
 
 > [!WARNING]
 > Use at your own risk. Some parts may change drastically until it's first release.
@@ -29,9 +29,9 @@ This project is entirely **open-source** and all contributions are welcome. Feel
 - Network Management (missing)
 - Logistics Management (missing)
 - World Editor Entities/Prefabs (only the laptop)
-- Game Master Support (missing)
+- Game Master Support (basic)
 - "UI on texture" for armaOS computers (missing)
-- Localization (missing)
+- Localization (very basic)
 
 ## Wiki
 
