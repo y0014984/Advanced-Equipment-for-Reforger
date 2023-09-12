@@ -1,0 +1,32 @@
+GenericEntity : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
+ ID "5E44DDFFDD11AED4"
+ components {
+  SCR_EditableEntityComponent "{5E58B027EB7ABEC9}" : "{996046FE206C699A}Prefabs/Editor/Components/Default_SCR_EditableEntityComponent.ct" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "#AER-EditableEntity_Laptop_Name"
+    m_Image "{8EB28B0338FA3D39}UI/Textures/EditorPreviews/Auto/E_Laptop.edds"
+    m_aAuthoredLabels {
+     1001
+    }
+    m_aAutoLabels {
+     1 120
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{5E58B027EB7B0D84}" : "{6CADA7A88A6265FD}Prefabs/Editor/Components/PreviewEntityComponentClass.ct" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5E58B027EB7B0A1C}" {
+     m_iParentID -1
+     m_Mesh "{7EA13CF243D7B131}Assets/Laptop/Laptop.xob"
+     m_Flags EDITABLE
+     m_Shape MESH
+     m_iPivotID ""
+     m_vScale 1 1 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{8EB28B0338FA3D39}UI/Textures/EditorPreviews/Auto/E_Laptop.edds"
+ Configurations {
+  PNGResourceClass PC {
+   ColorSpace ToSRGB
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass XBOX_SERIES : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass HEADLESS : PC {
+  }
+ }
+}

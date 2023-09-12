@@ -1,7 +1,7 @@
 SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/Editor/GameMode_Editor_Full.et" {
  coords 1351.858 38 2908
  {
-  SCR_FactionManager {
+  SCR_FactionManager "5E58DE739EC1782B" {
    ID "56E685E92F1B7E7A"
    Factions {
     SCR_Faction "{56DEAC40D2DBC8B1}" {
@@ -10,6 +10,12 @@ SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/E
    }
   }
  }
+}
+GenericEntity {
+ coords 1271.968 37.569 2935.207
+}
+GenericEntity : "{41A9C55B61F375F0}Prefabs/Items/Equipment/Backpacks/Backpack_Kolobok.et" {
+ coords 1270.047 38.389 2937.383
 }
 StaticModelEntity : "{5019513019F0885A}Prefabs/Props/Military/Furniture/TableMilitary_US_02.et" {
  coords 1270.419 37.481 2937.245

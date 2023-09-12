@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{8FDB74B41B1A7125}Configs/Editor/PlaceableEntities/Laptop.conf"
+ Configurations {
+  CONFResourceClass PC {
+  }
+  CONFResourceClass XBOX_ONE : PC {
+  }
+  CONFResourceClass XBOX_SERIES : PC {
+  }
+  CONFResourceClass PS4 : PC {
+  }
+  CONFResourceClass HEADLESS : PC {
+  }
+ }
+}
