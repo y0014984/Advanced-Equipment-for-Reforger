@@ -13,7 +13,7 @@ FrameWidgetClass {
     SizeY 64.5
     OffsetBottom -224.5
    }
-   Text "armaOS Terminal for Reforger v0.1"
+   Text "#AER-Terminal-Headline"
    "Font Size" 36
    "Vertical Alignment" Center
    FontProperties FontProperties "{5E44DDE0AC86A2A1}" {

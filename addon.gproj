@@ -7,6 +7,91 @@ GameProject {
  }
  Configurations {
   GameProjectConfig PC {
+   WidgetManagerSettings WidgetManagerSettings "{AC4BE58770485E02}" {
+    StringTables {
+     StringTableDefinition "{518AE2E5A9361F76}" {
+      Languages {
+       LanguageDefinition "{516CA5DA9BCB536C}" {
+       }
+       LanguageDefinition "{516CAC1F2A647028}" {
+       }
+       LanguageDefinition "{516CAC1F2697C5EC}" {
+       }
+       LanguageDefinition "{516CAC1F1DFCCC41}" {
+       }
+       LanguageDefinition "{5174991952800A5A}" {
+       }
+       LanguageDefinition "{5174991952C380AF}" {
+       }
+       LanguageDefinition "{51749919510B618E}" {
+       }
+       LanguageDefinition "{5174991950282E55}" {
+       }
+       LanguageDefinition "{517499195068397A}" {
+       }
+       LanguageDefinition "{5174991ABCBF3C54}" {
+       }
+       LanguageDefinition "{5174991ABC825E60}" {
+       }
+       LanguageDefinition "{5174991ACFFBD1F3}" {
+       }
+      }
+     }
+     StringTableDefinition "{5E58E238C0AAF5F1}" {
+      StringTableSource "{701BB95BB035226C}Language/AER_Localisation.st"
+      Languages {
+       LanguageDefinition "{5E58E238CD6103B2}" {
+        Code "cs_cz"
+        StringTableRuntime "{DFC4D830EF3EED8B}Language/AER_Localisation.cs_cz.conf"
+       }
+       LanguageDefinition "{5E58E238CD6103FB}" {
+        Code "de_de"
+        StringTableRuntime "{0ABAC203FC9DFCAB}Language/AER_Localisation.de_de.conf"
+       }
+       LanguageDefinition "{5E58E238CD6103EB}" {
+        Code "en_us"
+        StringTableRuntime "{544A4848966EF9AA}Language/AER_Localisation.en_us.conf"
+       }
+       LanguageDefinition "{5E58E238CD6103DF}" {
+        Code "es_es"
+        StringTableRuntime "{910605C1786C92B5}Language/AER_Localisation.es_es.conf"
+       }
+       LanguageDefinition "{5E58E238CD6103CF}" {
+        Code "fr_fr"
+        StringTableRuntime "{2AAEF0F69EEF71B7}Language/AER_Localisation.fr_fr.conf"
+       }
+       LanguageDefinition "{5E58E238CD61033C}" {
+        Code "it_it"
+        StringTableRuntime "{AAB27FC233CDF24E}Language/AER_Localisation.it_it.conf"
+       }
+       LanguageDefinition "{5E58E238CD610330}" {
+        Code "ja_jp"
+        StringTableRuntime "{BAA9C2500DBCC2E5}Language/AER_Localisation.ja_jp.conf"
+       }
+       LanguageDefinition "{5E58E238CD610324}" {
+        Code "ko_kr"
+        StringTableRuntime "{1A17EAFC9E91C1DA}Language/AER_Localisation.ko_kr.conf"
+       }
+       LanguageDefinition "{5E58E238CD610317}" {
+        Code "pl_pl"
+        StringTableRuntime "{46664C06207E5DA6}Language/AER_Localisation.pl_pl.conf"
+       }
+       LanguageDefinition "{5E58E238CD61030C}" {
+        Code "pt_br"
+        StringTableRuntime "{9311D6CA1B80971C}Language/AER_Localisation.pt_br.conf"
+       }
+       LanguageDefinition "{5E58E238CD61037F}" {
+        Code "ru_ru"
+        StringTableRuntime "{C650C26286F9F26A}Language/AER_Localisation.ru_ru.conf"
+       }
+       LanguageDefinition "{5E58E238CD61036B}" {
+        Code "zh_cn"
+        StringTableRuntime "{96B8F9A9D3779C22}Language/AER_Localisation.zh_cn.conf"
+       }
+      }
+     }
+    }
+   }
   }
   GameProjectConfig HEADLESS {
   }
