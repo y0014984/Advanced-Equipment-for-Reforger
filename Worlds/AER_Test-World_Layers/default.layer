@@ -1,0 +1,23 @@
+SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/Editor/GameMode_Editor_Full.et" {
+ coords 1351.858 38 2908
+ {
+  SCR_FactionManager {
+   ID "56E685E92F1B7E7A"
+   Factions {
+    SCR_Faction "{56DEAC40D2DBC8B1}" {
+     m_bIsPlayable 1
+    }
+   }
+  }
+ }
+}
+StaticModelEntity : "{5019513019F0885A}Prefabs/Props/Military/Furniture/TableMilitary_US_02.et" {
+ coords 1270.419 37.481 2937.245
+ angleY -174.135
+}
+SCR_SpawnPoint : "{CEA2B24051A44525}PrefabsEditable/SpawnPoints/E_SpawnPoint_US.et" {
+ coords 1281.16 36.706 2913.452
+}
+GenericEntity : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
+ coords 1270.935 38.386 2937.2
+}
