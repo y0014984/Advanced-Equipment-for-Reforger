@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{07BF7C5D7E011104}Configs/Editor/ActionLists/Toolbar/EditToolbar.conf"
+ Configurations {
+  CONFResourceClass PC {
+  }
+  CONFResourceClass XBOX_ONE : PC {
+  }
+  CONFResourceClass XBOX_SERIES : PC {
+  }
+  CONFResourceClass PS4 : PC {
+  }
+  CONFResourceClass HEADLESS : PC {
+  }
+ }
+}
