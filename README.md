@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://github.com/y0014984/Advanced-Equipment-for-Reforger/releases/latest">
-        <img src="https://img.shields.io/badge/Version-0.0.1-blue.svg?style=flat-square" alt="Advanced Equipment Version">
+        <img src="https://img.shields.io/badge/Version-0.1.0-blue.svg?style=flat-square" alt="Advanced Equipment Version">
     </a>
     <a href="https://www.bistudio.com/community/licenses/arma-public-license-share-alike">
         <img src="https://img.shields.io/badge/License-APL%20SA-red.svg?style=flat-square" alt="Advanced Equipment License">
@@ -13,7 +13,7 @@
 
 # Advanced Equipment for Arma Reforger
 
-**Advanced Equipment for Arma Reforger** is a mod for Arma Reforger, that is still under development.
+**Advanced Equipment** is a mod for Arma Reforger, that is still under development. I wanted to create a mod, that allows you to really use equipment like laptops and lamps.
 
 > [!WARNING]
 > Use at your own risk. Some parts may change drastically until it's first release.
@@ -29,9 +29,9 @@ This project is entirely **open-source** and all contributions are welcome. Feel
 - Network Management (missing)
 - Logistics Management (missing)
 - World Editor Entities/Prefabs (only the laptop)
-- Game Master Support (missing)
+- Game Master Support (basic)
 - "UI on texture" for armaOS computers (missing)
-- Localization (missing)
+- Localization (very basic)
 
 ## Wiki
 
