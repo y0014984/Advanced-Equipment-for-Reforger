@@ -25,5 +25,6 @@ SCR_SpawnPoint : "{CEA2B24051A44525}PrefabsEditable/SpawnPoints/E_SpawnPoint_US.
  coords 1281.16 36.706 2913.452
 }
 GenericEntity : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
- coords 1270.935 38.386 2937.2
+ coords 1270.936 38.387 2937.17
+ angleY -167.249
 }

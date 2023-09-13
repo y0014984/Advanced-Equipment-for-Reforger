@@ -95,10 +95,10 @@ GenericEntity {
     CustomAttributes {
      PreviewRenderAttributes "{5E468A9B31B18112}" {
       CameraPreset Front
-      CameraOrbitAngles 30 27 0
+      CameraOrbitAngles 0 0 0
       CameraDistanceToItem 0.6
       CameraOffset 0 0 0
-      ItemRenderRotation 0 180 0
+      ItemRenderRotation 0 0 0
       FOV 40
      }
     }
