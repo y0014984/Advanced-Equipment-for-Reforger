@@ -1,6 +1,20 @@
 FrameWidgetClass {
  Name "rootFrame"
  {
+  RichTextWidgetClass "{5E591A531A44A993}" {
+   Name "RichText0"
+   Slot FrameWidgetSlot "{5E591A531A44A9F1}" {
+    PositionX 472.5
+    OffsetLeft 472.5
+    PositionY 960
+    OffsetTop 960
+    SizeX 1055.5
+    OffsetRight -1528
+    SizeY 104
+    OffsetBottom -1064
+   }
+   Text "<color rgba=\"255,0,0,255\">lala</color><br/><color rgba=\"0,255,0,255\">lulu</color><br/><h1>hello</h1>"
+  }
   TextWidgetClass "{5E44DDE2CB1C0040}" {
    Name "Headline"
    Slot FrameWidgetSlot "{5E44DDE2CB1C01A4}" {
