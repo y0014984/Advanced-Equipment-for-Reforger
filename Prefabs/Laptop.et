@@ -62,6 +62,20 @@ GenericEntity {
   AER_OpenCloseStateComponent "{5E44DDFEE52F1B1B}" {
   }
   AER_PowerStateComponent "{5E46B78494E24312}" {
+   m_aPowerStateNames {
+    AER_PowerStateName "{5E5CBE89922D516D}" {
+     m_ePowerState OFF
+     m_sPowerStateName "Off (X)"
+    }
+    AER_PowerStateName "{5E5CBE89A7D34EAD}" {
+     m_ePowerState STANDBY
+     m_sPowerStateName "Standby (X)"
+    }
+    AER_PowerStateName "{5E5CBE89B5472209}" {
+     m_ePowerState ON
+     m_sPowerStateName "On (X)"
+    }
+   }
   }
   AER_TerminalComponent "{5E48703558FC6C8C}" {
   }

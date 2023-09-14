@@ -31,15 +31,15 @@ class AER_PowerStateEntityTooltipDetail : SCR_EntityTooltipDetail
 		switch (powerState)
 		{
 			case EPowerState.ON:
-				powerStateString = "On";
+				powerStateString = "#AER-PowerState-On";
 				break;
 	
 			case EPowerState.OFF:
-				powerStateString = "Off";
+				powerStateString = "#AER-PowerState-Off";
 				break;
 			
 			case EPowerState.STANDBY:
-				powerStateString = "Standby";
+				powerStateString = "#AER-PowerState-Standby";
 				break;
 	
 			default:

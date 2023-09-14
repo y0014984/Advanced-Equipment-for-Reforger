@@ -1,3 +1,6 @@
+TagManager : "{2FA9E172CAB1857A}Prefabs/MP/Managers/TagManager.et" {
+ coords 1264.274 37.464 2938.307
+}
 SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/Editor/GameMode_Editor_Full.et" {
  coords 1351.858 38 2908
  {
@@ -25,6 +28,21 @@ SCR_SpawnPoint : "{CEA2B24051A44525}PrefabsEditable/SpawnPoints/E_SpawnPoint_US.
  coords 1281.16 36.706 2913.452
 }
 GenericEntity : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
+ components {
+  AER_PowerStateComponent "{5E46B78494E24312}" {
+   m_aPowerStateNames {
+    AER_PowerStateName "{5E5CBE89922D516D}" {
+     m_sPowerStateName "#AER-PowerState-Off"
+    }
+    AER_PowerStateName "{5E5CBE89A7D34EAD}" {
+     m_sPowerStateName "#AER-PowerState-Standby"
+    }
+    AER_PowerStateName "{5E5CBE89B5472209}" {
+     m_sPowerStateName "#AER-PowerState-On"
+    }
+   }
+  }
+ }
  coords 1270.936 38.387 2937.17
  angleY -167.249
 }
