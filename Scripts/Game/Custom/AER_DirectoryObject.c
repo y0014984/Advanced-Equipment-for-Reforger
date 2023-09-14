@@ -1,4 +1,4 @@
-[BaseContainerProps()]
+[BaseContainerProps(), SCR_BaseContainerCustomTitleField("m_sName")]
 class AER_DirectoryObject : AER_FilesystemObject
 {
 	[Attribute(defvalue: "", uiwidget: UIWidgets.Object, desc: "Directory - can contain files and directories", params: "", category: "Advanced Equipment")];

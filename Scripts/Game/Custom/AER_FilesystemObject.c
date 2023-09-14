@@ -5,7 +5,7 @@ enum EFileContentType
 	EXECUTEABLE
 }
 
-[BaseContainerProps()]
+[BaseContainerProps(), SCR_BaseContainerCustomTitleField("m_sName")]
 class AER_FilesystemObject
 {
 	[Attribute(defvalue: "", uiwidget: UIWidgets.EditBox, desc: "Name - must be unique in it's parent folder", params: "", category: "Advanced Equipment")]
