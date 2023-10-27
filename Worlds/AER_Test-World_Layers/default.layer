@@ -1,10 +1,13 @@
-TagManager : "{2FA9E172CAB1857A}Prefabs/MP/Managers/TagManager.et" {
- coords 1264.274 37.464 2938.307
+SCR_AIWorld {
+ coords 1275.672 40.244 2921.786
+}
+PerceptionManager PerceptionManager1 {
+ coords 1286.302 39.114 2922.017
 }
 SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/Editor/GameMode_Editor_Full.et" {
- coords 1351.858 38 2908
+ coords 1273.379 37.542 2934.678
  {
-  SCR_FactionManager "5E58DE739EC1782B" {
+  SCR_FactionManager "5E9928828B008497" {
    ID "56E685E92F1B7E7A"
    Factions {
     SCR_Faction "{56DEAC40D2DBC8B1}" {
@@ -14,8 +17,11 @@ SCR_GameModeEditor GameMode_Editor_Full1 : "{DA3986AF1B5032B7}Prefabs/MP/Modes/E
   }
  }
 }
-GenericEntity {
- coords 1271.968 37.569 2935.207
+HitRegistrationManager HitRegistrationManager1 {
+ coords 1284.648 38.958 2922.806
+}
+SCR_MapLocator {
+ coords 1282.883 38.35 2923.283
 }
 GenericEntity : "{41A9C55B61F375F0}Prefabs/Items/Equipment/Backpacks/Backpack_Kolobok.et" {
  coords 1270.047 38.389 2937.383
@@ -24,25 +30,13 @@ StaticModelEntity : "{5019513019F0885A}Prefabs/Props/Military/Furniture/TableMil
  coords 1270.419 37.481 2937.245
  angleY -174.135
 }
+SCR_ChimeraCharacter victim : "{C9E4FEAF5AAC8D8C}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Medic.et" {
+ coords 1270.678 37.511 2934.477
+}
 SCR_SpawnPoint : "{CEA2B24051A44525}PrefabsEditable/SpawnPoints/E_SpawnPoint_US.et" {
  coords 1281.16 36.706 2913.452
 }
 GenericEntity : "{E7BA86BBF4614FF3}Prefabs/Laptop.et" {
- components {
-  AER_PowerStateComponent "{5E46B78494E24312}" {
-   m_aPowerStateNames {
-    AER_PowerStateName "{5E5CBE89922D516D}" {
-     m_sPowerStateName "#AER-PowerState-Off"
-    }
-    AER_PowerStateName "{5E5CBE89A7D34EAD}" {
-     m_sPowerStateName "#AER-PowerState-Standby"
-    }
-    AER_PowerStateName "{5E5CBE89B5472209}" {
-     m_sPowerStateName "#AER-PowerState-On"
-    }
-   }
-  }
- }
  coords 1270.936 38.387 2937.17
  angleY -167.249
 }

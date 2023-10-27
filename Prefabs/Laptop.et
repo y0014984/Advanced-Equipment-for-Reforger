@@ -26,8 +26,12 @@ GenericEntity {
          "Zeile 3"
         }
         AER_FileObject "{5E4A9D8D11AA8034}" {
+         m_sName "limbo"
          m_Permissions AER_Permissions "{5E4C710B39F8BFDD}" {
          }
+        }
+        AER_DirectoryObject "{5E5CBE8DD9138EF2}" {
+         m_sName "luna"
         }
        }
       }
@@ -65,15 +69,15 @@ GenericEntity {
    m_aPowerStateNames {
     AER_PowerStateName "{5E5CBE89922D516D}" {
      m_ePowerState OFF
-     m_sPowerStateName "Off (X)"
+     m_sPowerStateName "#AER-PowerState-Off"
     }
     AER_PowerStateName "{5E5CBE89A7D34EAD}" {
      m_ePowerState STANDBY
-     m_sPowerStateName "Standby (X)"
+     m_sPowerStateName "#AER-PowerState-Standby"
     }
     AER_PowerStateName "{5E5CBE89B5472209}" {
      m_ePowerState ON
-     m_sPowerStateName "On (X)"
+     m_sPowerStateName "#AER-PowerState-On"
     }
    }
   }
